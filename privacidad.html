@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Politica de Privacidad - BackJuice Portal</title>
+    <meta name="description" content="Politica de privacidad de BackJuice Portal. Conoce como protegemos tus datos.">
+    <link rel="canonical" href="https://backjuice.app/privacidad">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧃</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        surface: {
+                            900: '#0a0a0b',
+                            800: '#121214',
+                            700: '#1a1a1e',
+                            600: '#232328',
+                            500: '#2d2d33',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-surface-900 text-white font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-surface-900/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <span class="text-3xl">🧃</span>
+                    <span class="text-xl font-bold text-white group-hover:text-emerald-400 transition">BackJuice</span>
+                </a>
+                <a href="index.html" class="text-gray-400 hover:text-white transition text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Volver al inicio
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="pt-32 pb-20">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <!-- Header -->
+            <div class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Politica de Privacidad</h1>
+                <p class="text-gray-400">Ultima actualizacion: Enero 2026</p>
+            </div>
+
+            <!-- Content -->
+            <div class="prose prose-invert prose-lg max-w-none space-y-8">
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">1. Informacion que Recopilamos</h2>
+                    <p class="text-gray-300 mb-4">BackJuice Portal recopila la siguiente informacion para brindarte el servicio:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li><strong class="text-white">Datos de cuenta:</strong> Correo electronico y nombre para identificacion</li>
+                        <li><strong class="text-white">Datos de grupos:</strong> Nombre del curso, lista de participantes, conceptos de cobro</li>
+                        <li><strong class="text-white">Datos financieros:</strong> Registro de cuotas, montos y estados de pago</li>
+                        <li><strong class="text-white">Comprobantes:</strong> Imagenes de comprobantes de pago subidas por usuarios</li>
+                    </ul>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">2. Como Usamos tu Informacion</h2>
+                    <p class="text-gray-300 mb-4">Utilizamos tus datos exclusivamente para:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Proporcionar el servicio de gestion de cuotas</li>
+                        <li>Sincronizar datos entre dispositivos</li>
+                        <li>Generar reportes y estadisticas para tesoreros</li>
+                        <li>Enviar notificaciones sobre vencimientos (si lo autorizas)</li>
+                        <li>Mejorar la aplicacion basandonos en patrones de uso anonimos</li>
+                    </ul>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">3. Almacenamiento y Seguridad</h2>
+                    <p class="text-gray-300 mb-4">Tu informacion esta protegida con las siguientes medidas:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li><strong class="text-white">Encriptacion:</strong> Todos los datos se transmiten usando HTTPS/TLS</li>
+                        <li><strong class="text-white">Base de datos segura:</strong> Utilizamos Supabase con autenticacion por filas (RLS)</li>
+                        <li><strong class="text-white">Almacenamiento local:</strong> Datos offline encriptados en tu dispositivo</li>
+                        <li><strong class="text-white">Sin acceso a terceros:</strong> No vendemos ni compartimos tus datos</li>
+                    </ul>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">4. Compartir Informacion</h2>
+                    <p class="text-gray-300 mb-4">Solo compartimos informacion en estos casos:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li><strong class="text-white">Dentro del grupo:</strong> Los participantes ven sus propias cuotas</li>
+                        <li><strong class="text-white">Tesoreros:</strong> Ven la informacion de todos los participantes de sus grupos</li>
+                        <li><strong class="text-white">Requerimiento legal:</strong> Si la ley lo exige</li>
+                    </ul>
+                    <p class="text-gray-400 mt-4 text-sm">Nunca vendemos tu informacion a terceros ni la usamos para publicidad.</p>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">5. Tus Derechos</h2>
+                    <p class="text-gray-300 mb-4">Como usuario tienes derecho a:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li><strong class="text-white">Acceso:</strong> Solicitar una copia de tus datos</li>
+                        <li><strong class="text-white">Rectificacion:</strong> Corregir datos incorrectos</li>
+                        <li><strong class="text-white">Eliminacion:</strong> Solicitar la eliminacion de tu cuenta y datos</li>
+                        <li><strong class="text-white">Portabilidad:</strong> Exportar tus datos en formato estandar</li>
+                    </ul>
+                    <p class="text-gray-400 mt-4">Para ejercer estos derechos, contactanos en <a href="mailto:privacidad@backjuice.app" class="text-emerald-400 hover:underline">privacidad@backjuice.app</a></p>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">6. Retencion de Datos</h2>
+                    <p class="text-gray-300">Conservamos tus datos mientras mantengas una cuenta activa. Si eliminas tu cuenta, los datos se eliminan permanentemente en un plazo de 30 dias, excepto donde la ley requiera conservarlos por mas tiempo.</p>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">7. Menores de Edad</h2>
+                    <p class="text-gray-300">BackJuice Portal esta disenado para ser usado por adultos (tesoreros y apoderados). No recopilamos intencionalmente informacion de menores de 13 anos. Si descubrimos que hemos recopilado datos de un menor, los eliminaremos inmediatamente.</p>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">8. Cambios a esta Politica</h2>
+                    <p class="text-gray-300">Podemos actualizar esta politica ocasionalmente. Te notificaremos de cambios significativos a traves de la aplicacion o por correo electronico. El uso continuado del servicio despues de los cambios constituye aceptacion de la nueva politica.</p>
+                </section>
+
+                <section class="bg-surface-800 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-emerald-400 mb-4">9. Contacto</h2>
+                    <p class="text-gray-300 mb-4">Si tienes preguntas sobre esta politica de privacidad, contactanos:</p>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>📧 Email: <a href="mailto:privacidad@backjuice.app" class="text-emerald-400 hover:underline">privacidad@backjuice.app</a></li>
+                        <li>🌐 Web: <a href="contacto.html" class="text-emerald-400 hover:underline">Formulario de contacto</a></li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-8">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🧃</span>
+                    <span class="text-gray-400">BackJuice Portal</span>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="privacidad.html" class="hover:text-white transition">Privacidad</a>
+                    <a href="terminos.html" class="hover:text-white transition">Terminos</a>
+                    <a href="contacto.html" class="hover:text-white transition">Contacto</a>
+                </div>
+                <p class="text-gray-500 text-sm">&copy; 2026 BackJuice</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
