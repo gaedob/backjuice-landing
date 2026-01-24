@@ -1,6 +1,6 @@
-# BackJuice Portal - Landing Page
+# Kuota - Landing Page
 
-Landing page promocional para BackJuice Portal, la aplicacion de gestion de cuotas para tesoreros y apoderados.
+Landing page promocional para Kuota, la aplicacion de gestion de cuotas para tesoreros y apoderados.
 
 ## Tecnologias
 
@@ -11,7 +11,7 @@ Landing page promocional para BackJuice Portal, la aplicacion de gestion de cuot
 ## Estructura
 
 ```
-backjuice-landing/
+kuota-landing/
 ├── index.html      # Pagina principal
 ├── css/            # Estilos adicionales (si se necesitan)
 ├── js/             # Scripts adicionales (si se necesitan)
@@ -49,7 +49,7 @@ npx serve .
 1. Crear repositorio en GitHub
 2. Push del codigo
 3. Settings > Pages > Source: main branch
-4. La pagina estara en: `https://tu-usuario.github.io/backjuice-landing`
+4. La pagina estara en: `https://tu-usuario.github.io/kuota-landing`
 
 ### Netlify
 
