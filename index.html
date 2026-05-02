@@ -1,1217 +1,1519 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <title>Kuota - Gestion de Cuotas Escolares para Tesoreros y Apoderados</title>
-    <meta name="description" content="Simplifica la gestion de cuotas escolares. Dashboard intuitivo, recordatorios WhatsApp, reportes PDF y total transparencia. Empieza gratis.">
-    <meta name="keywords" content="gestion cuotas escolares, tesorero curso, app cuotas, control pagos escuela, cuotas colegio, apoderados pagos">
-    <link rel="canonical" href="https://kuota.app/">
+  <title>Kuota — Gestión de cuotas para grupos</title>
+  <meta name="description" content="Kuota organiza los cobros de tu grupo: dashboard en tiempo real, recordatorios por WhatsApp, pagos parciales y comprobantes digitales. Empieza gratis.">
+  <meta name="keywords" content="gestión cuotas, tesorero curso, app cuotas escolares, cobros grupales, centro de padres, cuotas colegio">
+  <link rel="canonical" href="https://kuota.app/">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kuota.app/">
-    <meta property="og:title" content="Kuota - Gestion de Cuotas Simple y Transparente">
-    <meta property="og:description" content="App para tesoreros y apoderados. Dashboard visual, WhatsApp masivo, reportes PDF. Empieza gratis.">
-    <meta property="og:image" content="https://kuota.app/img/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kuota.app/">
+  <meta property="og:title" content="Kuota — Cuotas sin perseguir. Pagos sin Excel.">
+  <meta property="og:description" content="Dashboard en tiempo real, recordatorios por WhatsApp y pagos parciales. Para tesoreros serios.">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧃</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23d97040'/><text x='7' y='23' font-size='20' font-weight='900' fill='white' font-family='system-ui'>K</text></svg>">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta property="og:image" content="https://kuota.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://kuota.app/og-image.png">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#d97040">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"¿Kuota es gratuito de verdad?","acceptedAnswer":{"@type":"Answer","text":"Sí. El plan Free no tiene fecha de vencimiento. Incluye 1 grupo, hasta 15 participantes y 10 recordatorios por WhatsApp al mes. Todas las funcionalidades principales están disponibles sin pagar."}},
+      {"@type":"Question","name":"¿Necesito instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Kuota funciona directo desde el navegador en cualquier dispositivo. Los apoderados entran con un link, sin descargar nada."}},
+      {"@type":"Question","name":"¿Qué pasa si no tengo internet?","acceptedAnswer":{"@type":"Answer","text":"Kuota guarda todo localmente y sincroniza automáticamente cuando recuperas la conexión. No se pierde ningún dato."}},
+      {"@type":"Question","name":"¿Cómo invito a los apoderados?","acceptedAnswer":{"@type":"Answer","text":"Por WhatsApp con un enlace mágico o descargando el QR del grupo. Los apoderados entran con su email, sin crear cuenta por separado."}},
+      {"@type":"Question","name":"¿Puedo gestionar varios grupos a la vez?","acceptedAnswer":{"@type":"Answer","text":"Sí. Desde el plan Starter tienes 5 grupos simultáneos, en Pro son ilimitados."}},
+      {"@type":"Question","name":"¿Mis datos están seguros?","acceptedAnswer":{"@type":"Answer","text":"Sí. Los datos se almacenan con acceso estrictamente por usuario. Los comprobantes en almacenamiento seguro con acceso de tiempo limitado. Kuota sigue estándares de seguridad reconocidos internacionalmente."}}
+    ]
+  }
+  </script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
-                        surface: {
-                            950: '#050506',
-                            900: '#0a0a0b',
-                            800: '#111113',
-                            700: '#1a1a1e',
-                            600: '#232328',
-                            500: '#2d2d33',
-                            400: '#3d3d44',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delayed': 'float 6s ease-in-out 2s infinite',
-                        'pulse-slow': 'pulse 3s ease-in-out infinite',
-                        'gradient': 'gradient 8s ease infinite',
-                        'slide-up': 'slideUp 0.6s ease-out forwards',
-                        'slide-in-left': 'slideInLeft 0.6s ease-out forwards',
-                        'slide-in-right': 'slideInRight 0.6s ease-out forwards',
-                        'scale-in': 'scaleIn 0.5s ease-out forwards',
-                        'counter': 'counter 2s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        gradient: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideInLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        slideInRight: {
-                            '0%': { opacity: '0', transform: 'translateX(30px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        scaleIn: {
-                            '0%': { opacity: '0', transform: 'scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'scale(1)' },
-                        },
-                    }
-                }
-            }
-        }
-    </script>
+  <style>
+    :root {
+      --brand: #c86030;
+      --brand-light: #b05228;
+      --brand-dim: rgba(200,96,48,0.08);
+      --brand-border: rgba(200,96,48,0.22);
+      --bg: #f8f5ef;
+      --bg-raised: #ffffff;
+      --bg-hover: #f2ede4;
+      --bg-active: #ebe5d8;
+      --border: rgba(30,18,8,0.09);
+      --border-mid: rgba(30,18,8,0.15);
+      --text: #1c1309;
+      --text-2: #6b5c4e;
+      --text-3: #a0907e;
+    }
 
-    <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #22c55e 0%, #10b981 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient 8s ease infinite;
-        }
-        .gradient-border {
-            background: linear-gradient(135deg, #22c55e, #06b6d4, #8b5cf6);
-            padding: 1px;
-            border-radius: 1rem;
-        }
-        .gradient-border > div {
-            background: #111113;
-            border-radius: calc(1rem - 1px);
-        }
-        .glow-green {
-            box-shadow: 0 0 80px rgba(34, 197, 94, 0.15), 0 0 160px rgba(34, 197, 94, 0.05);
-        }
-        .glow-blue {
-            box-shadow: 0 0 80px rgba(59, 130, 246, 0.15), 0 0 160px rgba(59, 130, 246, 0.05);
-        }
-        .glow-emerald {
-            box-shadow: 0 0 80px rgba(16, 185, 129, 0.12);
-        }
+    /* Paleta oscura para el mockup del dashboard (muestra la app real) */
+    .dark-ui {
+      --bg-raised: #171410;
+      --bg-hover: #201c17;
+      --bg-active: #28231d;
+      --border: rgba(255,230,200,0.07);
+      --text: #f0e9df;
+      --text-3: #6e6054;
+    }
 
-        /* Bento card base */
-        .bento-card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 1.25rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-        .bento-card:hover {
-            border-color: rgba(255,255,255,0.15);
-            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
-            transform: translateY(-2px);
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-        /* Noise texture overlay */
-        .noise::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
 
-        /* Stat counter animation */
-        @property --num {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: false;
-        }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #c8bfb0; border-radius: 3px; }
 
-        /* Pricing popular glow */
-        .plan-popular {
-            background: linear-gradient(135deg, #22c55e, #10b981, #06b6d4);
-            padding: 2px;
-            border-radius: 1.25rem;
-        }
-        .plan-popular > div {
-            background: #111113;
-            border-radius: calc(1.25rem - 2px);
-        }
+    a { text-decoration: none; color: inherit; }
 
-        /* Smooth scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0b; }
-        ::-webkit-scrollbar-thumb { background: #2d2d33; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3d3d44; }
+    /* ── Utility ── */
+    .brand { color: var(--brand); }
+    .muted { color: var(--text-2); }
+    .dim { color: var(--text-3); }
 
-        /* WhatsApp icon fill */
-        .whatsapp-icon { fill: #25D366; }
-    </style>
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-orange {
+      background: var(--brand);
+      color: #fff;
+      padding: 11px 22px;
+      font-size: 14px;
+    }
+    .btn-orange:hover { background: #c05e30; transform: translateY(-1px); }
+    .btn-orange:active { transform: translateY(0); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      padding: 11px 22px;
+      font-size: 14px;
+      border: 1px solid var(--border-mid);
+    }
+    .btn-ghost:hover { border-color: rgba(30,18,8,0.25); background: var(--bg-hover); }
+    .btn-sm { padding: 8px 16px; font-size: 13px; }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px;
+      transition: background 0.3s, border-bottom 0.3s, backdrop-filter 0.3s;
+    }
+    #nav.scrolled {
+      background: rgba(248,245,239,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 0 rgba(30,18,8,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--brand);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px; color: #fff;
+      letter-spacing: -0.05em;
+    }
+    .logo-name { font-weight: 700; font-size: 17px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .mobile-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-2);
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-drawer {
+      display: none;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 20px;
+      z-index: 99;
+    }
+    #mobile-drawer.open { display: block; }
+    .mobile-nav-link {
+      display: block;
+      padding: 12px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav-link:last-child { border-bottom: none; }
+
+    /* ── Sections ── */
+    .section { padding: 88px 24px; }
+    .section-sm { padding: 56px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── Hero ── */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--brand-dim);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-light);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .hero-h1 {
+      font-size: clamp(44px, 6.5vw, 72px);
+      font-weight: 900;
+      line-height: 1.01;
+      letter-spacing: -0.035em;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.65;
+      color: var(--text-2);
+      max-width: 440px;
+    }
+
+    /* ── Dashboard mockup ── */
+    .mockup-wrap {
+      background: var(--bg-raised);
+      border: 1px solid var(--brand-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .mockup-bar {
+      background: var(--bg-hover);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .traffic-lights { display: flex; gap: 5px; }
+    .tl { width: 10px; height: 10px; border-radius: 50%; }
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
+    .kpi {
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .kpi-label { font-size: 10px; color: var(--text-3); margin-bottom: 5px; }
+    .kpi-value { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+    .kpi-sub { font-size: 10px; color: var(--text-3); margin-top: 4px; }
+    .progress { height: 3px; background: var(--bg-active); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--brand); border-radius: 2px; }
+    .chart-wrap { margin: 0 12px 12px; background: var(--bg-hover); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    .chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 44px; }
+    .bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--bg-active); }
+    .bar.active { background: var(--brand); opacity: 0.85; }
+    .chart-labels { display: flex; justify-content: space-between; margin-top: 5px; }
+    .chart-label { font-size: 9px; color: var(--text-3); }
+    .chart-label.active { color: var(--brand); }
+
+    /* ── Live dot ── */
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: inline-block;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── Stats bar ── */
+    .stat-num {
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(30,18,8,0.05), 0 1px 2px rgba(30,18,8,0.03);
+    }
+    .card:hover {
+      border-color: var(--border-mid);
+      box-shadow: 0 4px 12px rgba(30,18,8,0.08), 0 1px 3px rgba(30,18,8,0.04);
+    }
+    .card-brand { border-color: var(--brand-border); }
+
+    /* ── Problem numbers ── */
+    .problem-num {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(200,96,48,0.14);
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Steps ── */
+    .step-circle {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .step-line {
+      width: 1px;
+      flex: 1;
+      margin: 4px 0;
+      min-height: 16px;
+    }
+
+    /* ── Feature tabs ── */
+    .ftab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: var(--text-2);
+      transition: background 0.15s, color 0.15s;
+      border-left: 2px solid transparent;
+    }
+    .ftab:hover { background: var(--bg-hover); color: var(--text); }
+    .ftab.on {
+      background: var(--bg-hover);
+      border-left-color: var(--brand);
+      color: var(--text);
+    }
+    .ftab-icon { font-size: 16px; flex-shrink: 0; width: 22px; text-align: center; }
+    .ftab-label { font-size: 13px; font-weight: 500; }
+
+    .feature-panel {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      min-height: 420px;
+    }
+    .feature-panel-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .feature-panel-desc { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .feature-bullet {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: var(--text-2); margin-bottom: 6px;
+    }
+    .feature-bullet::before {
+      content: '→';
+      color: var(--brand);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .mini-ui {
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 18px;
+    }
+    .mini-ui-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: var(--bg-active);
+      border-radius: 7px;
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    .mini-ui-row:last-child { margin-bottom: 0; }
+
+    /* ── Tech stack ── */
+    .tech-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg-hover);
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .tech-row:last-child { margin-bottom: 0; }
+
+    /* ── Plan cards ── */
+    .plan { display: flex; flex-direction: column; }
+    .plan-price-main {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .plan-feature-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 3px 0;
+    }
+    .plan-check { color: #4a9e72; flex-shrink: 0; }
+
+    /* ── FAQ ── */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: transparent; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+      padding: 18px 0;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+    }
+    .faq-q-text { font-size: 15px; font-weight: 500; }
+    .faq-icon { flex-shrink: 0; transition: transform 0.2s; }
+    .faq-a {
+      display: none;
+      padding: 0 0 18px;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--brand-dim);
+      border: 1px solid var(--brand-border);
+      color: var(--brand);
+      white-space: nowrap;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ── Mobile KPI strip (solo mobile) ── */
+    .mobile-kpi-strip { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .problem-grid, .who-grid { grid-template-columns: 1fr 1fr; }
+      .flow-grid, .eng-grid { grid-template-columns: 1fr; }
+      .plan-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .feature-layout { grid-template-columns: 1fr !important; }
+      #ftab-nav { flex-direction: row !important; overflow-x: auto; padding-right: 0 !important; padding-bottom: 8px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .mobile-btn { display: flex; }
+      .section { padding: 64px 20px; }
+      .section-sm { padding: 40px 20px; }
+      .hero-sub { max-width: 100%; }
+      .hero-mockup { display: none; }
+      .mobile-kpi-strip { display: grid; }
+    }
+    @media (max-width: 640px) {
+      .problem-grid, .who-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .plan-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Noise overlay sutil sobre fondo claro */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 9998;
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-surface-900 text-white font-sans antialiased">
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">K</div>
+      <span class="logo-name">Kuota</span>
+    </a>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-surface-900/80 backdrop-blur-xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-16">
-                <a href="#" class="flex items-center gap-3 group">
-                    <span class="text-2xl">🧃</span>
-                    <span class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Kuota</span>
-                </a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#funcionalidades" class="text-gray-400 hover:text-white transition-colors text-sm">Funcionalidades</a>
-                    <a href="#como-funciona" class="text-gray-400 hover:text-white transition-colors text-sm">Como Funciona</a>
-                    <a href="#para-quien" class="text-gray-400 hover:text-white transition-colors text-sm">Para Quien</a>
-                    <a href="#planes" class="text-gray-400 hover:text-white transition-colors text-sm">Planes</a>
-                    <a href="http://myapp-flet.onrender.com/" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-2.5 rounded-xl transition-all text-sm hover:shadow-lg hover:shadow-emerald-500/25">
-                        Comenzar Gratis
-                    </a>
-                </div>
-                <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-white/10 mt-2 pt-4 space-y-1">
-                <a href="#funcionalidades" class="block py-2.5 px-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Funcionalidades</a>
-                <a href="#como-funciona" class="block py-2.5 px-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Como Funciona</a>
-                <a href="#para-quien" class="block py-2.5 px-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Para Quien</a>
-                <a href="#planes" class="block py-2.5 px-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Planes</a>
-                <a href="http://myapp-flet.onrender.com/" target="_blank" class="block py-2.5 px-3 text-emerald-400 font-semibold hover:bg-emerald-500/10 rounded-lg transition-colors">Comenzar Gratis</a>
-            </div>
-        </div>
-    </nav>
+    <div class="nav-links">
+      <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+      <a href="#como-funciona" class="nav-link">Cómo funciona</a>
+      <a href="#planes" class="nav-link">Precios</a>
+    </div>
 
-    <!-- ============================================ -->
-    <!-- HERO SECTION -->
-    <!-- ============================================ -->
-    <section class="min-h-screen flex items-center pt-16 relative overflow-hidden noise">
-        <!-- Background Effects -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-[120px] animate-pulse-slow"></div>
-            <div class="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 1.5s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-violet-500/10 rounded-full blur-[80px] animate-pulse-slow" style="animation-delay: 3s;"></div>
-        </div>
+    <div class="nav-cta">
+      <a href="https://myapp-flet.onrender.com/" class="btn btn-orange" style="padding:9px 18px;font-size:13px;">
+        Abrir app
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
 
-        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <!-- Left: Copy -->
-                <div>
-                    <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-8 reveal">
-                        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                        <span class="text-sm text-emerald-300 font-medium">Gratis para siempre en plan basico</span>
-                    </div>
+    <button class="mobile-btn" id="menu-toggle" aria-label="Menú">
+      <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <svg id="menu-icon-close" style="display:none;" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
 
-                    <!-- Main Heading -->
-                    <h1 class="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] mb-6 reveal reveal-delay-1">
-                        Deja de perseguir<br>
-                        pagos. <span class="gradient-text">Automatiza.</span>
-                    </h1>
+<div id="mobile-drawer">
+  <a href="#funcionalidades" class="mobile-nav-link">Funcionalidades</a>
+  <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
+  <a href="#planes" class="mobile-nav-link">Precios</a>
+  <a href="https://myapp-flet.onrender.com/" class="btn btn-orange" style="margin-top:16px;width:100%;justify-content:center;">Abrir app</a>
+</div>
 
-                    <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-xl leading-relaxed reveal reveal-delay-2">
-                        Kuota transforma la gestion de cuotas escolares. Dashboard en tiempo real,
-                        recordatorios por WhatsApp y reportes PDF profesionales.
-                        <span class="text-white font-medium">Todo en una sola app.</span>
-                    </p>
 
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row gap-4 mb-10 reveal reveal-delay-3">
-                        <a href="http://myapp-flet.onrender.com/" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-xl transition-all text-lg inline-flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 hover:-translate-y-0.5">
-                            Comenzar Gratis
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                            </svg>
-                        </a>
-                        <a href="#como-funciona" class="border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-semibold px-8 py-4 rounded-xl transition-all text-lg inline-flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            Ver como funciona
-                        </a>
-                    </div>
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="section" style="padding-top:120px;position:relative;overflow:hidden;">
+  <!-- Ambient glow -->
+  <div style="position:absolute;top:-80px;right:-60px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,96,48,0.07) 0%,transparent 60%);pointer-events:none;"></div>
 
-                    <!-- Trust signals -->
-                    <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 reveal reveal-delay-4">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Sin tarjeta de credito
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Funciona en celular y PC
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Datos cifrados
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Dashboard Preview (Bento) -->
-                <div class="reveal reveal-delay-2">
-                    <div class="gradient-border glow-green">
-                        <div class="p-5 md:p-7">
-                            <div class="bg-surface-700 rounded-2xl p-4 md:p-6 border border-white/5">
-                                <!-- Window chrome -->
-                                <div class="flex items-center justify-between mb-5">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                                    </div>
-                                    <span class="text-[11px] text-gray-500 font-medium tracking-wide">Dashboard Tesorero</span>
-                                </div>
-
-                                <!-- Bento KPIs -->
-                                <div class="grid grid-cols-4 gap-2.5 mb-3">
-                                    <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 text-center col-span-1">
-                                        <p class="text-xl md:text-2xl font-black text-emerald-400" data-counter="78" data-suffix="%">0%</p>
-                                        <p class="text-[10px] text-emerald-300/60 font-medium mt-0.5">Recaudado</p>
-                                    </div>
-                                    <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 text-center col-span-1">
-                                        <p class="text-xl md:text-2xl font-black text-amber-400" data-counter="12">0</p>
-                                        <p class="text-[10px] text-amber-300/60 font-medium mt-0.5">Por vencer</p>
-                                    </div>
-                                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-3 text-center col-span-1">
-                                        <p class="text-xl md:text-2xl font-black text-blue-400" data-counter="5">0</p>
-                                        <p class="text-[10px] text-blue-300/60 font-medium mt-0.5">En revision</p>
-                                    </div>
-                                    <div class="bg-purple-500/10 border border-purple-500/20 rounded-xl p-3 text-center col-span-1">
-                                        <p class="text-xl md:text-2xl font-black text-purple-400" data-counter="32">0</p>
-                                        <p class="text-[10px] text-purple-300/60 font-medium mt-0.5">Participantes</p>
-                                    </div>
-                                </div>
-
-                                <!-- Money row -->
-                                <div class="grid grid-cols-5 gap-2.5 mb-3">
-                                    <div class="bg-surface-600 rounded-xl p-4 col-span-3">
-                                        <p class="text-[10px] text-gray-500 font-medium mb-1">Total Recaudado</p>
-                                        <p class="text-2xl md:text-3xl font-black text-emerald-400">$1.2M</p>
-                                        <div class="flex items-center gap-1 mt-1">
-                                            <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                                            <span class="text-[10px] text-emerald-400">+12% vs mes anterior</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-surface-600 rounded-xl p-4 col-span-2 flex flex-col justify-center">
-                                        <p class="text-[10px] text-gray-500 font-medium mb-1">Pendiente</p>
-                                        <p class="text-xl md:text-2xl font-black text-orange-400">$340K</p>
-                                    </div>
-                                </div>
-
-                                <!-- Mini chart simulation -->
-                                <div class="bg-surface-600 rounded-xl p-3">
-                                    <div class="flex items-end justify-between gap-1 h-10">
-                                        <div class="bg-emerald-500/30 rounded-sm w-full" style="height: 40%"></div>
-                                        <div class="bg-emerald-500/40 rounded-sm w-full" style="height: 55%"></div>
-                                        <div class="bg-emerald-500/50 rounded-sm w-full" style="height: 45%"></div>
-                                        <div class="bg-emerald-500/60 rounded-sm w-full" style="height: 70%"></div>
-                                        <div class="bg-emerald-500/70 rounded-sm w-full" style="height: 60%"></div>
-                                        <div class="bg-emerald-500/80 rounded-sm w-full" style="height: 85%"></div>
-                                        <div class="bg-emerald-500 rounded-sm w-full" style="height: 78%"></div>
-                                    </div>
-                                    <div class="flex justify-between mt-1.5">
-                                        <span class="text-[9px] text-gray-600">Ene</span>
-                                        <span class="text-[9px] text-gray-600">Feb</span>
-                                        <span class="text-[9px] text-gray-600">Mar</span>
-                                        <span class="text-[9px] text-gray-600">Abr</span>
-                                        <span class="text-[9px] text-gray-600">May</span>
-                                        <span class="text-[9px] text-gray-600">Jun</span>
-                                        <span class="text-[9px] text-gray-500 font-medium">Jul</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- SOCIAL PROOF STATS -->
-    <!-- ============================================ -->
-    <section class="py-16 border-y border-white/5 bg-surface-800/50 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                <div class="text-center reveal">
-                    <p class="text-3xl md:text-4xl font-black text-white mb-1" data-counter="550" data-suffix="+">0+</p>
-                    <p class="text-sm text-gray-500">Tests automatizados</p>
-                </div>
-                <div class="text-center reveal reveal-delay-1">
-                    <p class="text-3xl md:text-4xl font-black text-white mb-1" data-counter="14">0</p>
-                    <p class="text-sm text-gray-500">Funcionalidades integradas</p>
-                </div>
-                <div class="text-center reveal reveal-delay-2">
-                    <p class="text-3xl md:text-4xl font-black text-white mb-1">100<span class="text-emerald-400">%</span></p>
-                    <p class="text-sm text-gray-500">Datos cifrados</p>
-                </div>
-                <div class="text-center reveal reveal-delay-3">
-                    <p class="text-3xl md:text-4xl font-black text-white mb-1">24<span class="text-emerald-400">h</span></p>
-                    <p class="text-sm text-gray-500">Soporte respuesta</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- PROBLEM SECTION -->
-    <!-- ============================================ -->
-    <section class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <div class="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-6">
-                    <span class="text-sm text-red-400 font-medium">El problema que todos conocen</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mb-5">
-                    Cobrar cuotas no deberia<br>
-                    <span class="text-red-400">ser un trabajo extra</span>
-                </h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Los tesoreros pierden horas cada semana en tareas repetitivas que pueden automatizarse
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-5">
-                <div class="bento-card p-8 reveal reveal-delay-1 group">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Planillas interminables</h3>
-                    <p class="text-gray-400 leading-relaxed">Excel, Google Sheets, cuadernos... informacion dispersa, versiones desactualizadas y errores humanos constantes.</p>
-                </div>
-
-                <div class="bento-card p-8 reveal reveal-delay-2 group">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Cobros uno a uno</h3>
-                    <p class="text-gray-400 leading-relaxed">Enviar mensajes individuales por WhatsApp a cada apoderado, esperando respuestas que nunca llegan.</p>
-                </div>
-
-                <div class="bento-card p-8 reveal reveal-delay-3 group">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Cero transparencia</h3>
-                    <p class="text-gray-400 leading-relaxed">Apoderados sin visibilidad de sus pagos, generando desconfianza, conflictos y consultas constantes al tesorero.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- BENTO FEATURES GRID -->
-    <!-- ============================================ -->
-    <section id="funcionalidades" class="py-24 bg-surface-800/50 border-y border-white/5 relative overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]"></div>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
+      <!-- Copy -->
+      <div style="max-width:560px;">
+        <div class="hero-badge" style="margin-bottom:24px;">
+          <span class="live-dot"></span>
+          v1.5.1 · Disponible ahora
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
-                    <span class="text-sm text-gray-300 font-medium">Funcionalidades</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mb-5">
-                    Todo lo que necesitas.<br>
-                    <span class="gradient-text">Nada que no.</span>
-                </h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Herramientas profesionales para tesoreros y transparencia total para apoderados
-                </p>
-            </div>
+        <h1 class="hero-h1" style="margin-bottom:20px;">
+          Cuotas sin<br>
+          perseguir.<br>
+          <span class="brand">Pagos sin Excel.</span>
+        </h1>
 
-            <!-- Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+        <p class="hero-sub" style="margin-bottom:32px;">
+          Kuota organiza los cobros de tu grupo en un solo lugar.
+          Dashboard en tiempo real, recordatorios por WhatsApp
+          y comprobantes digitales. Gratis para empezar.
+        </p>
 
-                <!-- Dashboard (large) -->
-                <div class="bento-card p-7 lg:col-span-2 lg:row-span-2 reveal group">
-                    <div class="flex flex-col h-full">
-                        <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Dashboard en Tiempo Real</h3>
-                        <p class="text-gray-400 mb-6">KPIs que importan: porcentaje recaudado, cuotas por vencer, pagos en revision, participantes activos y evolucion mensual.</p>
-                        <!-- Mini Dashboard Preview -->
-                        <div class="mt-auto bg-surface-700/50 rounded-xl p-4 border border-white/5">
-                            <div class="grid grid-cols-3 gap-2">
-                                <div class="bg-emerald-500/10 rounded-lg p-2.5 text-center">
-                                    <p class="text-lg font-bold text-emerald-400">78%</p>
-                                    <p class="text-[9px] text-emerald-300/60">Recaudado</p>
-                                </div>
-                                <div class="bg-amber-500/10 rounded-lg p-2.5 text-center">
-                                    <p class="text-lg font-bold text-amber-400">12</p>
-                                    <p class="text-[9px] text-amber-300/60">Por vencer</p>
-                                </div>
-                                <div class="bg-blue-500/10 rounded-lg p-2.5 text-center">
-                                    <p class="text-lg font-bold text-blue-400">5</p>
-                                    <p class="text-[9px] text-blue-300/60">En revision</p>
-                                </div>
-                            </div>
-                            <div class="flex items-end justify-between gap-1 h-12 mt-3">
-                                <div class="bg-emerald-500/20 rounded w-full transition-all" style="height: 35%"></div>
-                                <div class="bg-emerald-500/30 rounded w-full transition-all" style="height: 50%"></div>
-                                <div class="bg-emerald-500/40 rounded w-full transition-all" style="height: 42%"></div>
-                                <div class="bg-emerald-500/50 rounded w-full transition-all" style="height: 65%"></div>
-                                <div class="bg-emerald-500/60 rounded w-full transition-all" style="height: 58%"></div>
-                                <div class="bg-emerald-500/80 rounded w-full transition-all" style="height: 82%"></div>
-                                <div class="bg-emerald-500 rounded w-full transition-all" style="height: 78%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- WhatsApp -->
-                <div class="bento-card p-7 reveal reveal-delay-1 group">
-                    <div class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 whatsapp-icon" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">WhatsApp Masivo</h3>
-                    <p class="text-gray-400 text-sm">Envia recordatorios a todos los morosos con un click. Plantillas editables incluidas.</p>
-                </div>
-
-                <!-- Reportes PDF -->
-                <div class="bento-card p-7 reveal reveal-delay-2 group">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">3 Tipos de Reportes</h3>
-                    <p class="text-gray-400 text-sm">Morosidad, recaudacion y estado de conceptos. Exporta PDF profesionales listos para compartir.</p>
-                </div>
-
-                <!-- Comprobantes (medium) -->
-                <div class="bento-card p-7 lg:col-span-2 reveal reveal-delay-1 group">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-violet-500/10 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">Verificacion de Comprobantes</h3>
-                            <p class="text-gray-400 text-sm">Los apoderados suben foto o PDF del comprobante. El tesorero revisa y aprueba o rechaza con un toque. Sin discusiones.</p>
-                        </div>
-                    </div>
-                    <!-- Mini mockup -->
-                    <div class="mt-5 bg-surface-700/50 rounded-xl p-3 border border-white/5">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-violet-500/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14"/></svg>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium">comprobante_marzo.jpg</p>
-                                    <p class="text-[10px] text-gray-500">Maria Lopez - Cuota Marzo</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-2">
-                                <div class="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                </div>
-                                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Invitaciones -->
-                <div class="bento-card p-7 reveal reveal-delay-2 group">
-                    <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Invitaciones WhatsApp</h3>
-                    <p class="text-gray-400 text-sm">Comparte un link magico por WhatsApp. El apoderado se registra y queda vinculado automaticamente.</p>
-                </div>
-
-                <!-- Multi-Grupo -->
-                <div class="bento-card p-7 reveal reveal-delay-3 group">
-                    <div class="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Multi-Grupo</h3>
-                    <p class="text-gray-400 text-sm">Administra varios cursos o equipos desde una sola cuenta. Cambiar entre grupos con un toque.</p>
-                </div>
-
-                <!-- Alertas (medium) -->
-                <div class="bento-card p-7 lg:col-span-2 reveal reveal-delay-2 group">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold mb-2">Alertas Inteligentes</h3>
-                            <p class="text-gray-400 text-sm">Cuotas por vencer, comprobantes pendientes de revision, nuevos participantes. Todo llega en el momento justo para que nunca se te pase nada.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Seguridad -->
-                <div class="bento-card p-7 reveal reveal-delay-3 group">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Datos Protegidos</h3>
-                    <p class="text-gray-400 text-sm">Cifrado HTTPS, RLS en base de datos. Solo tu y tu tesorero ven tu informacion.</p>
-                </div>
-
-                <!-- Offline -->
-                <div class="bento-card p-7 reveal reveal-delay-4 group">
-                    <div class="w-12 h-12 bg-teal-500/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414 1 1 0 01-1.414-1.414z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Funciona Offline</h3>
-                    <p class="text-gray-400 text-sm">Sin internet? Sin problema. Tus datos se sincronizan automaticamente cuando vuelvas a conectar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- HOW IT WORKS -->
-    <!-- ============================================ -->
-    <section id="como-funciona" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
-                    <span class="text-sm text-gray-300 font-medium">Asi de simple</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mb-5">
-                    Funcionando en<br>
-                    <span class="gradient-text">menos de 5 minutos</span>
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-16">
-                <!-- Tesorero Flow -->
-                <div class="reveal">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-emerald-400">Para Tesoreros</h3>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 font-bold text-sm">1</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Crea tu grupo</h4>
-                                <p class="text-gray-400 text-sm">Registrate, crea tu grupo y define los conceptos de pago (cuota mensual, evento, etc.)</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 font-bold text-sm">2</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Invita apoderados</h4>
-                                <p class="text-gray-400 text-sm">Comparte un link por WhatsApp. Se registran solos y quedan vinculados a tu grupo.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 font-bold text-sm">3</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Las cuotas se generan solas</h4>
-                                <p class="text-gray-400 text-sm">Kuota crea automaticamente las cuotas para cada participante segun los conceptos definidos.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 font-bold text-sm">4</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Gestiona y reporta</h4>
-                                <p class="text-gray-400 text-sm">Revisa comprobantes, envia recordatorios masivos y exporta reportes PDF profesionales.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Apoderado Flow -->
-                <div class="reveal reveal-delay-2">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-blue-400">Para Apoderados</h3>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 font-bold text-sm">1</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Recibe la invitacion</h4>
-                                <p class="text-gray-400 text-sm">El tesorero te comparte un link por WhatsApp. Abrelo y registrate en segundos.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 font-bold text-sm">2</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Ve tus cuotas</h4>
-                                <p class="text-gray-400 text-sm">Dashboard personal con todas tus cuotas: pagadas, pendientes y por vencer. Sin sorpresas.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 font-bold text-sm">3</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Sube tu comprobante</h4>
-                                <p class="text-gray-400 text-sm">Paga y sube la foto del comprobante desde tu celular. Foto, captura o PDF.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 font-bold text-sm">4</div>
-                            <div>
-                                <h4 class="font-bold mb-1">Listo, queda registrado</h4>
-                                <p class="text-gray-400 text-sm">El tesorero aprueba y tu pago queda confirmado. Historial completo siempre disponible.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- FOR WHO - MARKET SEGMENTS -->
-    <!-- ============================================ -->
-    <section id="para-quien" class="py-24 bg-surface-800/50 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-black mb-5">
-                    Creado para quienes<br>
-                    <span class="gradient-text">gestionan comunidades</span>
-                </h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Si cobras cuotas a un grupo de personas, Kuota es para ti
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-5">
-                <div class="bento-card p-8 text-center reveal reveal-delay-1 group hover:border-emerald-500/20">
-                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">🎓</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Educacion</h3>
-                    <p class="text-gray-400">Colegios, jardines infantiles, centros de padres, cursos y talleres.</p>
-                    <div class="mt-5 flex flex-wrap gap-2 justify-center">
-                        <span class="text-[11px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full">Cuotas mensuales</span>
-                        <span class="text-[11px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full">Eventos</span>
-                        <span class="text-[11px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full">Fondos</span>
-                    </div>
-                </div>
-
-                <div class="bento-card p-8 text-center reveal reveal-delay-2 group hover:border-blue-500/20">
-                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">⚽</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Deporte</h3>
-                    <p class="text-gray-400">Clubes, academias, ligas, federaciones y equipos deportivos.</p>
-                    <div class="mt-5 flex flex-wrap gap-2 justify-center">
-                        <span class="text-[11px] bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full">Membresias</span>
-                        <span class="text-[11px] bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full">Torneos</span>
-                        <span class="text-[11px] bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full">Equipamiento</span>
-                    </div>
-                </div>
-
-                <div class="bento-card p-8 text-center reveal reveal-delay-3 group hover:border-violet-500/20">
-                    <div class="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                        <span class="text-3xl">🏘️</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Comunidad</h3>
-                    <p class="text-gray-400">Juntas de vecinos, ONGs, agrupaciones y comunidades organizadas.</p>
-                    <div class="mt-5 flex flex-wrap gap-2 justify-center">
-                        <span class="text-[11px] bg-violet-500/10 text-violet-400 px-2.5 py-1 rounded-full">Gastos comunes</span>
-                        <span class="text-[11px] bg-violet-500/10 text-violet-400 px-2.5 py-1 rounded-full">Proyectos</span>
-                        <span class="text-[11px] bg-violet-500/10 text-violet-400 px-2.5 py-1 rounded-full">Donaciones</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- PRICING SECTION -->
-    <!-- ============================================ -->
-    <section id="planes" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[150px]"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
+          <a href="https://myapp-flet.onrender.com/" class="btn btn-orange" style="padding:13px 26px;font-size:15px;">
+            Empezar gratis
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#como-funciona" class="btn btn-ghost" style="padding:13px 26px;font-size:15px;">Ver cómo funciona</a>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
-                    <span class="text-sm text-gray-300 font-medium">Precios transparentes</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mb-5">
-                    Empieza gratis.<br>
-                    <span class="gradient-text">Escala cuando quieras.</span>
-                </h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Todas las funcionalidades en todos los planes. Solo cambian los limites.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Free -->
-                <div class="bento-card p-7 reveal reveal-delay-1 flex flex-col">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold mb-1 text-gray-300">Free</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-4xl font-black">$0</span>
-                            <span class="text-gray-500 text-sm">/mes</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Para probar con un grupo pequeno</p>
-                    </div>
-                    <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">1</strong> grupo</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">15</strong> participantes</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Todas las funcionalidades
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Soporte comunidad
-                        </li>
-                    </ul>
-                    <a href="http://myapp-flet.onrender.com/" target="_blank" class="block text-center border border-white/20 hover:border-emerald-500/50 hover:bg-emerald-500/5 text-white font-semibold py-3.5 rounded-xl transition-all">
-                        Comenzar Gratis
-                    </a>
-                </div>
-
-                <!-- Starter -->
-                <div class="bento-card p-7 reveal reveal-delay-2 flex flex-col">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold mb-1 text-gray-300">Starter</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-4xl font-black">$9.990</span>
-                            <span class="text-gray-500 text-sm">/mes</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Para organizaciones en crecimiento</p>
-                    </div>
-                    <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">3</strong> grupos</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            <span><strong class="text-white">50</strong> participantes/grupo</span>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Todas las funcionalidades
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Soporte por email
-                        </li>
-                    </ul>
-                    <a href="http://myapp-flet.onrender.com/" target="_blank" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-emerald-500/20">
-                        Suscribirse
-                    </a>
-                </div>
-
-                <!-- Pro (Popular) -->
-                <div class="plan-popular reveal reveal-delay-3 flex flex-col">
-                    <div class="p-7 flex flex-col h-full relative">
-                        <div class="absolute -top-px left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-black text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-emerald-500/20">
-                            Mas popular
-                        </div>
-                        <div class="mb-6">
-                            <h3 class="text-lg font-bold mb-1 text-emerald-400">Pro</h3>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-4xl font-black">$24.990</span>
-                                <span class="text-gray-500 text-sm">/mes</span>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-2">Para instituciones grandes</p>
-                        </div>
-                        <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
-                            <li class="flex items-center gap-2.5">
-                                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                <span><strong class="text-white">10</strong> grupos</span>
-                            </li>
-                            <li class="flex items-center gap-2.5">
-                                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                <span><strong class="text-white">200</strong> participantes/grupo</span>
-                            </li>
-                            <li class="flex items-center gap-2.5">
-                                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                Todas las funcionalidades
-                            </li>
-                            <li class="flex items-center gap-2.5">
-                                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                                Soporte prioritario
-                            </li>
-                        </ul>
-                        <a href="http://myapp-flet.onrender.com/" target="_blank" class="block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-emerald-500/25">
-                            Suscribirse
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Custom -->
-                <div class="bento-card p-7 reveal reveal-delay-4 flex flex-col">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold mb-1 text-gray-300">Custom</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-4xl font-black">A medida</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Para necesidades especificas</p>
-                    </div>
-                    <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Grupos <strong class="text-white">ilimitados</strong>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Participantes <strong class="text-white">ilimitados</strong>
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Todas las funcionalidades
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Soporte dedicado
-                        </li>
-                    </ul>
-                    <a href="contacto.html" class="block text-center border border-white/20 hover:border-white/40 hover:bg-white/5 text-white font-semibold py-3.5 rounded-xl transition-all">
-                        Contactar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- FAQ SECTION -->
-    <!-- ============================================ -->
-    <section class="py-24 bg-surface-800/50 border-y border-white/5">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-black mb-5">Preguntas frecuentes</h2>
-            </div>
-
-            <div class="space-y-3">
-                <details class="bento-card group reveal" open>
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Kuota es gratis de verdad?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        Si. El plan Free es gratis para siempre e incluye 1 grupo con hasta 15 participantes y todas las funcionalidades. Sin tarjeta de credito, sin periodo de prueba.
-                    </div>
-                </details>
-
-                <details class="bento-card group reveal reveal-delay-1">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Necesito instalar algo?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        No. Kuota funciona desde el navegador en cualquier dispositivo: celular, tablet o computador. Tambien hay version de escritorio para Windows, Mac y Android.
-                    </div>
-                </details>
-
-                <details class="bento-card group reveal reveal-delay-2">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Mis datos estan seguros?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        Absolutamente. Usamos cifrado HTTPS en todas las comunicaciones, Row Level Security en la base de datos (cada usuario solo ve lo suyo), y almacenamiento cifrado para comprobantes. Tu informacion nunca se comparte con terceros.
-                    </div>
-                </details>
-
-                <details class="bento-card group reveal reveal-delay-3">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Como invito a los apoderados?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        Kuota genera un link magico que compartes por WhatsApp. El apoderado abre el link, se registra con email y contrasena, y queda vinculado automaticamente a tu grupo. Sin configuraciones complicadas.
-                    </div>
-                </details>
-
-                <details class="bento-card group reveal reveal-delay-4">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Puedo cambiar de plan despues?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        Si. Puedes subir o bajar de plan en cualquier momento. Si necesitas mas grupos o participantes, solicita la actualizacion desde la app y nuestro equipo lo gestiona en menos de 24 horas.
-                    </div>
-                </details>
-
-                <details class="bento-card group reveal">
-                    <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                        <span class="font-semibold text-lg pr-4">Que pasa si no tengo internet?</span>
-                        <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400">
-                        Kuota guarda tus datos localmente. Si pierdes conexion, puedes seguir consultando informacion. Cuando vuelvas a conectar, todo se sincroniza automaticamente.
-                    </div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- FINAL CTA -->
-    <!-- ============================================ -->
-    <section class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[150px]"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#4a9e72" stroke-width="1.3"/><path d="M4.5 7l2 2 3-3" stroke="#4a9e72" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Sin tarjeta de crédito
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L12.5 4v4.5C12.5 11 10.5 13 7 13S1.5 11 1.5 8.5V4L7 1.5Z" stroke="#4a9e72" stroke-width="1.3" fill="none"/></svg>
+            Datos cifrados
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3.5" width="4.5" height="7" rx="1" stroke="#4a9e72" stroke-width="1.3"/><rect x="8" y="3.5" width="4.5" height="7" rx="1" stroke="#4a9e72" stroke-width="1.3"/></svg>
+            Desktop + móvil
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2.5C4.5 2.5 2.5 4.5 2.5 7S4.5 11.5 7 11.5 11.5 9.5 11.5 7 9.5 2.5 7 2.5Z" stroke="#4a9e72" stroke-width="1.3" fill="none"/><path d="M9.5 5L6 10 4.5 7.5" stroke="#4a9e72" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Funciona offline
+          </span>
         </div>
 
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <div class="reveal">
-                <span class="text-6xl mb-6 inline-block animate-float">🧃</span>
-                <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                    Menos Excel.<br>
-                    Mas <span class="gradient-text">tranquilidad.</span>
-                </h2>
-                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl mx-auto leading-relaxed">
-                    Unete a los tesoreros que dejaron de perseguir pagos y empezaron a gestionarlos profesionalmente.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-                    <a href="http://myapp-flet.onrender.com/" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-10 py-4 rounded-xl transition-all inline-flex items-center justify-center gap-3 text-lg hover:shadow-xl hover:shadow-emerald-500/25 hover:-translate-y-0.5">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                        </svg>
-                        Comenzar Gratis Ahora
-                    </a>
-                </div>
-
-                <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        Plan Free para siempre
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        Sin publicidad
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        Multiplataforma
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        Hecho en Chile
-                    </div>
-                </div>
+        <!-- KPI strip solo mobile -->
+        <div class="mobile-kpi-strip" style="grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;">
+          <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Total recaudado</div>
+            <div style="font-size:18px;font-weight:800;">$1.240.000</div>
+            <div style="height:3px;background:var(--bg-active);border-radius:2px;margin-top:5px;overflow:hidden;"><div style="width:78%;height:100%;background:var(--brand);border-radius:2px;"></div></div>
+            <div style="font-size:10px;color:var(--text-3);margin-top:3px;">78% del objetivo</div>
+          </div>
+          <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Participantes</div>
+            <div style="font-size:18px;font-weight:800;">32</div>
+            <div style="font-size:10px;color:#4a9e72;margin-top:4px;">↑ 27 al día</div>
+          </div>
+          <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Por vencer</div>
+            <div style="font-size:18px;font-weight:800;color:#c4882a;">12</div>
+            <div style="font-size:10px;color:var(--text-3);margin-top:4px;">próximos 7 días</div>
+          </div>
+          <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;">
+            <div>
+              <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">En revisión</div>
+              <div style="font-size:18px;font-weight:800;color:#8b8ccc;">5</div>
+              <div style="font-size:10px;color:var(--text-3);margin-top:4px;">comprobantes</div>
             </div>
+            <span style="font-size:10px;color:var(--brand);display:flex;align-items:center;gap:3px;margin-top:2px;"><span class="live-dot"></span> En vivo</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ============================================ -->
-    <!-- FOOTER -->
-    <!-- ============================================ -->
-    <footer class="py-12 border-t border-white/5 bg-surface-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-10 mb-10">
-                <!-- Brand -->
-                <div class="md:col-span-1">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="text-2xl">🧃</span>
-                        <span class="font-bold text-lg">Kuota</span>
-                    </div>
-                    <p class="text-sm text-gray-500 leading-relaxed">Gestion de cuotas simple y transparente para comunidades organizadas.</p>
-                </div>
-
-                <!-- Producto -->
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-300 mb-4">Producto</h4>
-                    <div class="space-y-2.5">
-                        <a href="#funcionalidades" class="block text-sm text-gray-500 hover:text-white transition-colors">Funcionalidades</a>
-                        <a href="#planes" class="block text-sm text-gray-500 hover:text-white transition-colors">Planes</a>
-                        <a href="#como-funciona" class="block text-sm text-gray-500 hover:text-white transition-colors">Como Funciona</a>
-                        <a href="http://myapp-flet.onrender.com/" target="_blank" class="block text-sm text-gray-500 hover:text-white transition-colors">Abrir App</a>
-                    </div>
-                </div>
-
-                <!-- Legal -->
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-300 mb-4">Legal</h4>
-                    <div class="space-y-2.5">
-                        <a href="privacidad.html" class="block text-sm text-gray-500 hover:text-white transition-colors">Privacidad</a>
-                        <a href="terminos.html" class="block text-sm text-gray-500 hover:text-white transition-colors">Terminos</a>
-                    </div>
-                </div>
-
-                <!-- Contacto -->
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-300 mb-4">Contacto</h4>
-                    <div class="space-y-2.5">
-                        <a href="contacto.html" class="block text-sm text-gray-500 hover:text-white transition-colors">Formulario</a>
-                        <a href="mailto:hola@kuota.app" class="block text-sm text-gray-500 hover:text-white transition-colors">hola@kuota.app</a>
-                        <a href="mailto:soporte@kuota.app" class="block text-sm text-gray-500 hover:text-white transition-colors">soporte@kuota.app</a>
-                    </div>
-                </div>
+      <!-- Dashboard mockup -->
+      <div class="hero-mockup" style="width:360px;flex-shrink:0;">
+        <div class="mockup-wrap dark-ui" style="color:#f0e9df;">
+          <div class="mockup-bar">
+            <div class="traffic-lights">
+              <div class="tl" style="background:#b85050;"></div>
+              <div class="tl" style="background:#b89030;"></div>
+              <div class="tl" style="background:#3a9050;"></div>
             </div>
+            <span style="font-size:11px;color:var(--text-3);">Dashboard · Kuota v1.5</span>
+            <span style="font-size:11px;color:var(--brand);display:flex;align-items:center;gap:4px;">
+              <span class="live-dot"></span> En vivo
+            </span>
+          </div>
 
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-600">
-                    &copy; 2026 Kuota. Hecho con 💚 en Chile.
-                </p>
-                <div class="flex items-center gap-6 text-sm text-gray-600">
-                    <a href="privacidad.html" class="hover:text-white transition-colors">Privacidad</a>
-                    <a href="terminos.html" class="hover:text-white transition-colors">Terminos</a>
-                    <a href="contacto.html" class="hover:text-white transition-colors">Contacto</a>
-                </div>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Total recaudado</div>
+              <div class="kpi-value">$1.240.000</div>
+              <div class="progress"><div class="progress-fill" style="width:78%;"></div></div>
+              <div class="kpi-sub">78% del objetivo</div>
             </div>
+            <div class="kpi">
+              <div class="kpi-label">Por vencer</div>
+              <div class="kpi-value" style="color:#c4882a;">12</div>
+              <div class="kpi-sub">próximos 7 días</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">En revisión</div>
+              <div class="kpi-value" style="color:#8b8ccc;">5</div>
+              <div class="kpi-sub">comprobantes</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Participantes</div>
+              <div class="kpi-value">32</div>
+              <div class="kpi-sub" style="color:#4a9e72;">↑ 27 al día</div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:8px;">Recaudación mensual</div>
+            <div class="chart-bars">
+              <div class="bar" style="height:52%;"></div>
+              <div class="bar" style="height:68%;"></div>
+              <div class="bar" style="height:44%;"></div>
+              <div class="bar" style="height:82%;"></div>
+              <div class="bar" style="height:58%;"></div>
+              <div class="bar active" style="height:100%;"></div>
+            </div>
+            <div class="chart-labels">
+              <span class="chart-label">DIC</span>
+              <span class="chart-label">ENE</span>
+              <span class="chart-label">FEB</span>
+              <span class="chart-label">MAR</span>
+              <span class="chart-label">ABR</span>
+              <span class="chart-label active">MAY</span>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ============================================ -->
-    <!-- SCRIPTS -->
-    <!-- ============================================ -->
-    <script>
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        revealElements.forEach(el => revealObserver.observe(el));
+<hr class="div">
 
-        // Counter Animation
-        const counterElements = document.querySelectorAll('[data-counter]');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.dataset.counter);
-                    const suffix = el.dataset.suffix || '';
-                    const duration = 2000;
-                    const start = performance.now();
+<!-- ═══════════════════════════════ STATS ═══════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;" class="stats-grid">
+      <div class="reveal" style="text-align:center;">
+        <div class="stat-num brand">5 min</div>
+        <div class="stat-label">Para crear tu primer grupo</div>
+      </div>
+      <div class="reveal reveal-d1" style="text-align:center;">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Instalaciones para apoderados</div>
+      </div>
+      <div class="reveal reveal-d2" style="text-align:center;">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Datos cifrados</div>
+      </div>
+      <div class="reveal reveal-d3" style="text-align:center;">
+        <div class="stat-num">&lt;1s</div>
+        <div class="stat-label">Actualización en tiempo real</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    function animate(currentTime) {
-                        const elapsed = currentTime - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.round(target * eased);
-                        el.textContent = current.toLocaleString() + suffix;
-                        if (progress < 1) requestAnimationFrame(animate);
-                    }
-                    requestAnimationFrame(animate);
-                    counterObserver.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-        counterElements.forEach(el => counterObserver.observe(el));
+<hr class="div">
 
-        // Mobile menu close on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
+<!-- ═══════════════════════════════ PROBLEMA ═══════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px;">
+      <div class="label" style="margin-bottom:12px;">El problema</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;">
+        Gestionar cuotas hoy es<br>un trabajo de tiempo completo.
+      </h2>
+    </div>
 
-        // Navbar background on scroll
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-surface-900/95');
-                nav.classList.remove('bg-surface-900/80');
-            } else {
-                nav.classList.remove('bg-surface-900/95');
-                nav.classList.add('bg-surface-900/80');
-            }
-        });
-    </script>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;" class="problem-grid">
+      <div class="card reveal" style="padding:28px 28px 32px;">
+        <div class="problem-num">01</div>
+        <h3 style="font-size:18px;font-weight:700;margin:10px 0 8px;">El Excel miente.</h3>
+        <p style="font-size:14px;line-height:1.65;color:var(--text-2);">Cada pago en efectivo desactualiza el registro. Los errores se acumulan y nadie sabe quién debe qué.</p>
+      </div>
+      <div class="card reveal reveal-d1" style="padding:28px 28px 32px;">
+        <div class="problem-num">02</div>
+        <h3 style="font-size:18px;font-weight:700;margin:10px 0 8px;">Los recordatorios agotan.</h3>
+        <p style="font-size:14px;line-height:1.65;color:var(--text-2);">Escribir uno a uno por WhatsApp, esperar respuesta, hacer seguimiento. El tesorero se convierte en cobrador full time.</p>
+      </div>
+      <div class="card reveal reveal-d2" style="padding:28px 28px 32px;">
+        <div class="problem-num">03</div>
+        <h3 style="font-size:18px;font-weight:700;margin:10px 0 8px;">Sin transparencia, hay desconfianza.</h3>
+        <p style="font-size:14px;line-height:1.65;color:var(--text-2);">Los apoderados no saben cuánto deben ni qué pagaron. Las conversaciones se vuelven conflictos.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<hr class="div">
+
+<!-- ═══════════════════════════════ FUNCIONALIDADES ═══════════════════════════════ -->
+<section class="section" id="funcionalidades">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:52px;">
+      <div class="label" style="margin-bottom:12px;">Funcionalidades</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;">
+        Todo lo que necesita<br>un tesorero en serio.
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:8px;align-items:start;" class="feature-layout">
+      <!-- Tabs -->
+      <div id="ftab-nav" style="display:flex;flex-direction:column;gap:2px;padding-right:8px;"></div>
+      <!-- Panel -->
+      <div id="ftab-panel" class="feature-panel"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ COMO FUNCIONA ═══════════════════════════════ -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <div class="label" style="margin-bottom:12px;">Cómo funciona</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;">Dos roles. Un objetivo.</h2>
+      <p style="font-size:16px;color:var(--text-2);margin-top:12px;">Diseñado para el tesorero que administra y el apoderado que paga.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="flow-grid">
+      <!-- Tesorero -->
+      <div class="card" style="padding:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+          <div style="width:38px;height:38px;background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:9px;display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="7" width="14" height="9" rx="1.5" stroke="#d97040" stroke-width="1.3"/><path d="M6 7V5a3 3 0 016 0v2" stroke="#d97040" stroke-width="1.3" stroke-linecap="round"/><path d="M2 11h14" stroke="#d97040" stroke-width="1.3"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;">Para el Tesorero</h3>
+        </div>
+
+        <div style="display:flex;flex-direction:column;">
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:var(--brand);">1</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(217,112,64,0.22),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Crea el grupo y define los conceptos</div>
+              <div style="font-size:13px;color:var(--text-2);">Mensualidades, eventos únicos o cuotas periódicas. Las cuotas se generan automáticamente para cada participante.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:var(--brand);">2</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(217,112,64,0.22),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Invita a los apoderados</div>
+              <div style="font-size:13px;color:var(--text-2);">Por WhatsApp con enlace mágico o descargando el QR del grupo. Sin que ellos instalen nada.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:var(--brand);">3</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(217,112,64,0.22),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Aprueba comprobantes con un tap</div>
+              <div style="font-size:13px;color:var(--text-2);">Los apoderados suben fotos o PDFs. Tú revisas y el estado cambia en tiempo real para todos.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:var(--brand);">4</div>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Genera reportes PDF</div>
+              <div style="font-size:13px;color:var(--text-2);">Morosidad, recaudación mensual y estado por concepto. Listos para reuniones y rendiciones.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apoderado -->
+      <div class="card" style="padding:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+          <div style="width:38px;height:38px;background:rgba(139,140,204,0.11);border:1px solid rgba(139,140,204,0.18);border-radius:9px;display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#8b8ccc" stroke-width="1.3"/><path d="M2.5 16c0-3.5 2.9-6 6.5-6s6.5 2.5 6.5 6" stroke="#8b8ccc" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;">Para el Apoderado</h3>
+        </div>
+
+        <div style="display:flex;flex-direction:column;">
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:#8b8ccc;">1</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(139,140,204,0.20),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Recibe invitación por WhatsApp</div>
+              <div style="font-size:13px;color:var(--text-2);">Un link, un click. Sin descargar nada. Accede desde el navegador o desde la app de escritorio.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:#8b8ccc;">2</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(139,140,204,0.20),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Ve todas tus cuotas en un solo lugar</div>
+              <div style="font-size:13px;color:var(--text-2);">¿Hijos en varios cursos? "Mis Pagos" consolida TODO de todos los grupos, ordenado por urgencia.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:#8b8ccc;">3</div>
+              <div class="step-line" style="background:linear-gradient(to bottom,rgba(139,140,204,0.20),transparent);"></div>
+            </div>
+            <div style="padding-bottom:24px;">
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Sube tu comprobante o abona en partes</div>
+              <div style="font-size:13px;color:var(--text-2);">Foto del voucher o PDF de la transferencia. Desde el celular en segundos. Con soporte para pagos parciales.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="step-circle" style="background:#8b8ccc;">4</div>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Estado en tiempo real</div>
+              <div style="font-size:13px;color:var(--text-2);">Sin preguntar, sin esperar, sin "¿llegó mi pago?". El estado aparece al instante en tu dashboard.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ POR QUÉ KUOTA ═══════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;" class="eng-grid">
+      <!-- Copy -->
+      <div class="reveal">
+        <div class="label" style="margin-bottom:12px;">Por qué Kuota</div>
+        <h2 style="font-size:clamp(26px,3.5vw,38px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px;">
+          No es otra app de<br>formularios.
+        </h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:28px;">
+          Cada decisión de diseño parte de un problema real que los tesoreros enfrentan todos los meses.
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:36px;height:36px;flex-shrink:0;background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L13.5 4v4C13.5 11 11 13.5 8 14.5 5 13.5 2.5 11 2.5 8V4L8 1.5Z" stroke="#d97040" stroke-width="1.3" fill="none"/><path d="M5.5 8l2 2 3-3" stroke="#d97040" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:3px;">Probado antes de cada actualización</div>
+              <div style="font-size:13px;color:var(--text-2);">Cada flujo —invitar apoderados, aprobar comprobantes, generar reportes— está verificado automáticamente antes de que llegue a tus manos.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:36px;height:36px;flex-shrink:0;background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6Z" stroke="#d97040" stroke-width="1.3" fill="none"/><path d="M11 6l-4.5 4L4 7.5" stroke="#d97040" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:3px;">Funciona sin internet. Sin excepciones.</div>
+              <div style="font-size:13px;color:var(--text-2);">En una reunión de apoderados, en el colegio o en el celular con señal mala — Kuota guarda todo y sincroniza solo cuando vuelve la conexión.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:36px;height:36px;flex-shrink:0;background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2" fill="#d97040"/><circle cx="8" cy="8" r="5" stroke="#d97040" stroke-width="1.3" stroke-dasharray="2 2" fill="none"/><circle cx="8" cy="8" r="7" stroke="#d97040" stroke-width="0.8" opacity="0.4" fill="none"/></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:3px;">Ves cada pago en el momento en que ocurre</div>
+              <div style="font-size:13px;color:var(--text-2);">Cuando un apoderado sube su comprobante, el dashboard cambia al instante. Sin recargar, sin esperar un correo.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:36px;height:36px;flex-shrink:0;background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="8" rx="1.5" stroke="#d97040" stroke-width="1.3"/><path d="M5 5V4a3 3 0 016 0v1" stroke="#d97040" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:3px;">Tus datos son solo tuyos</div>
+              <div style="font-size:13px;color:var(--text-2);">Cada usuario accede únicamente a sus propios grupos. Los comprobantes tienen acceso de tiempo limitado. Nada se comparte sin tu permiso.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparativa -->
+      <div class="reveal reveal-d1">
+        <div class="card card-brand" style="padding:24px;">
+          <div class="label" style="margin-bottom:20px;">WhatsApp + Excel vs Kuota</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:8px;overflow:hidden;">
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:11px;font-weight:600;color:var(--text-3);border-bottom:1px solid var(--border);">Sin Kuota</div>
+            <div style="background:var(--brand-dim);padding:10px 12px;font-size:11px;font-weight:600;color:var(--brand);border-bottom:1px solid var(--brand-border);">Con Kuota</div>
+
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:12px;color:var(--text-2);border-bottom:1px solid var(--border);">Registro manual en Excel</div>
+            <div style="background:rgba(217,112,64,0.06);padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--brand-border);">Cuotas generadas automáticamente</div>
+
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:12px;color:var(--text-2);border-bottom:1px solid var(--border);">Recordatorio uno a uno</div>
+            <div style="background:rgba(217,112,64,0.06);padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--brand-border);">Envío masivo en un click</div>
+
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:12px;color:var(--text-2);border-bottom:1px solid var(--border);">"¿Te llegó mi pago?"</div>
+            <div style="background:rgba(217,112,64,0.06);padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--brand-border);">Estado visible en tiempo real</div>
+
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:12px;color:var(--text-2);border-bottom:1px solid var(--border);">Fotos de vouchers perdidas</div>
+            <div style="background:rgba(217,112,64,0.06);padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--brand-border);">Comprobantes guardados y organizados</div>
+
+            <div style="background:var(--bg-active);padding:10px 12px;font-size:12px;color:var(--text-2);">Sin respaldo ni historial</div>
+            <div style="background:rgba(217,112,64,0.06);padding:10px 12px;font-size:12px;color:var(--text);">Reportes PDF listos para presentar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ PARA QUIÉN ═══════════════════════════════ -->
+<section class="section" id="para-quien">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:52px;">
+      <div class="label" style="margin-bottom:12px;">Para quién</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;">
+        Si cobras cuotas en grupo,<br>Kuota es para ti.
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;" class="who-grid">
+      <div class="card reveal" style="padding:28px;">
+        <div style="font-size:30px;margin-bottom:12px;">🎓</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Educación</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Centros de padres, colegios, jardines, academias. Cada apoderado con su propio dashboard de cuotas.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag">Cuotas mensuales</span>
+          <span class="tag">Eventos</span>
+          <span class="tag">Fondos del curso</span>
+        </div>
+      </div>
+      <div class="card reveal reveal-d1" style="padding:28px;">
+        <div style="font-size:30px;margin-bottom:12px;">⚽</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Deporte</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Clubes deportivos, academias, ligas amateur. Membresías, equipamiento e inscripciones a torneos.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag">Membresías</span>
+          <span class="tag">Torneos</span>
+          <span class="tag">Equipamiento</span>
+        </div>
+      </div>
+      <div class="card reveal reveal-d2" style="padding:28px;">
+        <div style="font-size:30px;margin-bottom:12px;">🏘️</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Comunidad</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Juntas de vecinos, ONGs, condominios, agrupaciones. Transparencia total en gastos compartidos.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag">Gastos comunes</span>
+          <span class="tag">Proyectos</span>
+          <span class="tag">Donaciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ PLANES ═══════════════════════════════ -->
+<section class="section" id="planes">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:52px;">
+      <div class="label" style="margin-bottom:12px;">Precios</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;">
+        Empieza gratis.<br>Escala cuando lo necesites.
+      </h2>
+      <p style="font-size:16px;color:var(--text-2);margin-top:12px;">Todas las funcionalidades en todos los planes. La diferencia está en la escala.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;" class="plan-grid">
+      <!-- Free -->
+      <div class="card plan reveal" style="padding:24px;">
+        <div class="label" style="margin-bottom:10px;">Free</div>
+        <div style="margin-bottom:4px;">
+          <span class="plan-price-main">$0</span>
+          <span style="font-size:13px;color:var(--text-2);">/mes</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-2);margin-bottom:20px;min-height:36px;">Para explorar y grupos pequeños.</p>
+        <a href="https://myapp-flet.onrender.com/" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-bottom:20px;">Empezar gratis</a>
+        <div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 1 grupo</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 15 participantes</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 10 recordatorios WA/mes</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Reportes básicos</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Comprobantes</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Pagos parciales</div>
+        </div>
+      </div>
+
+      <!-- Starter -->
+      <div class="card plan reveal reveal-d1" style="padding:24px;">
+        <div class="label" style="margin-bottom:10px;">Starter</div>
+        <div style="margin-bottom:4px;">
+          <span class="plan-price-main">$9</span>
+          <span style="font-size:13px;color:var(--text-2);">/mes USD</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-2);margin-bottom:20px;min-height:36px;">Para grupos medianos activos.</p>
+        <a href="https://myapp-flet.onrender.com/" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-bottom:20px;">Comenzar</a>
+        <div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 5 grupos</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 50 participantes/grupo</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 100 recordatorios WA/mes</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Reportes completos</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Multi-moneda</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Soporte por email</div>
+        </div>
+      </div>
+
+      <!-- Pro -->
+      <div class="card plan reveal reveal-d2" style="padding:24px;border-color:var(--brand);position:relative;">
+        <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;">Popular</div>
+        <div class="label brand" style="margin-bottom:10px;">Pro</div>
+        <div style="margin-bottom:4px;">
+          <span class="plan-price-main">$29</span>
+          <span style="font-size:13px;color:var(--text-2);">/mes USD</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-2);margin-bottom:20px;min-height:36px;">Para instituciones en crecimiento.</p>
+        <a href="https://myapp-flet.onrender.com/" class="btn btn-orange btn-sm" style="width:100%;justify-content:center;margin-bottom:20px;">Comenzar Pro</a>
+        <div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Grupos ilimitados</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> 500 participantes/grupo</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Recordatorios ilimitados</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> API access</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Branding personalizado</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Predicción morosidad</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> SLA 99.5% · Soporte prioritario</div>
+        </div>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="card plan reveal reveal-d3" style="padding:24px;">
+        <div class="label" style="margin-bottom:10px;">Enterprise</div>
+        <div style="margin-bottom:4px;">
+          <span style="font-size:26px;font-weight:900;letter-spacing:-0.02em;">A medida</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-2);margin-bottom:20px;min-height:36px;">Para colegios y organizaciones grandes.</p>
+        <a href="mailto:admin@kuota.app" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-bottom:20px;">Contactar</a>
+        <div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Todo en Pro</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Participantes ilimitados</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Soporte dedicado 24/7</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> SLA 99.9%</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> On-premise disponible</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Branding completo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ FAQ ═══════════════════════════════ -->
+<section class="section">
+  <div class="container" style="max-width:720px;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-0.025em;">Preguntas frecuentes</h2>
+    </div>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ CTA FINAL ═══════════════════════════════ -->
+<section class="section" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:500px;height:320px;background:radial-gradient(circle,rgba(200,96,48,0.07) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="container" style="text-align:center;position:relative;">
+    <div class="reveal">
+      <h2 style="font-size:clamp(34px,5.5vw,60px);font-weight:900;letter-spacing:-0.035em;line-height:1.03;margin-bottom:20px;">
+        ¿Listo para<br>dejar el Excel?
+      </h2>
+      <p style="font-size:18px;color:var(--text-2);margin-bottom:32px;">
+        Empieza gratis. Sin tarjeta. Sin instalar nada.
+      </p>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+        <a href="https://myapp-flet.onrender.com/" class="btn btn-orange" style="padding:14px 32px;font-size:16px;">
+          Crear cuenta gratis
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:admin@kuota.app" class="btn btn-ghost" style="padding:14px 32px;font-size:16px;">
+          Hablar con el equipo
+        </a>
+      </div>
+      <p style="font-size:13px;color:var(--text-3);">Plan Free · Para siempre gratis · Hecho en Chile 🇨🇱</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer style="border-top:1px solid var(--border);padding:40px 24px 24px;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;" class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;">
+          <div class="logo-mark" style="width:28px;height:28px;font-size:15px;">K</div>
+          <span style="font-weight:700;font-size:16px;">Kuota</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.6;max-width:220px;">Gestión de cuotas para grupos. Sin Excel, sin WhatsApp descontrolado, sin caos.</p>
+      </div>
+      <div>
+        <div class="label" style="margin-bottom:14px;">Producto</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="#funcionalidades" style="font-size:14px;color:var(--text-2);" class="nav-link">Funcionalidades</a>
+          <a href="#planes" style="font-size:14px;color:var(--text-2);" class="nav-link">Precios</a>
+          <a href="#como-funciona" style="font-size:14px;color:var(--text-2);" class="nav-link">Cómo funciona</a>
+          <a href="https://myapp-flet.onrender.com/" style="font-size:14px;color:var(--text-2);" class="nav-link">Abrir app</a>
+        </div>
+      </div>
+      <div>
+        <div class="label" style="margin-bottom:14px;">Legal</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="privacidad.html" style="font-size:14px;color:var(--text-2);" class="nav-link">Privacidad</a>
+          <a href="terminos.html" style="font-size:14px;color:var(--text-2);" class="nav-link">Términos</a>
+        </div>
+      </div>
+      <div>
+        <div class="label" style="margin-bottom:14px;">Contacto</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="mailto:hola@kuota.app" style="font-size:14px;color:var(--text-2);" class="nav-link">hola@kuota.app</a>
+          <a href="mailto:soporte@kuota.app" style="font-size:14px;color:var(--text-2);" class="nav-link">soporte@kuota.app</a>
+          <a href="contacto.html" style="font-size:14px;color:var(--text-2);" class="nav-link">Formulario</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <span style="font-size:13px;color:var(--text-3);">© 2026 Kuota · Hecho en Chile 🇨🇱</span>
+      <span style="font-size:13px;color:var(--text-3);">v1.5.1</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Nav scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  const toggle = document.getElementById('menu-toggle');
+  const drawer = document.getElementById('mobile-drawer');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  let menuOpen = false;
+
+  toggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    drawer.classList.toggle('open', menuOpen);
+    iconOpen.style.display = menuOpen ? 'none' : 'block';
+    iconClose.style.display = menuOpen ? 'block' : 'none';
+  });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menuOpen = false;
+      drawer.classList.remove('open');
+      iconOpen.style.display = 'block';
+      iconClose.style.display = 'none';
+    });
+  });
+
+  // ── Scroll reveal ──
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+
+  // ── Feature tabs ──
+  const features = [
+    {
+      id: 'dashboard',
+      icon: '📊',
+      label: 'Dashboard en tiempo real',
+      title: 'Todo en un vistazo',
+      desc: 'KPIs actualizados vía WebSocket en menos de 1 segundo. Porcentaje recaudado, participantes en mora, próximos vencimientos y últimas transacciones. El indicador "● En vivo" confirma que la conexión está activa.',
+      bullets: [
+        'Actualización menor a 1 segundo',
+        'Indicador visual "En vivo" con WebSocket',
+        'Reconexión automática con exponential backoff',
+        'Fallback a polling si el realtime falla'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:13px;font-weight:600;">5°B · Centro de Padres</span>
+          <span style="font-size:11px;color:var(--brand);display:flex;align-items:center;gap:4px;"><span class="live-dot"></span> En vivo</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+          <div style="background:var(--bg-active);border-radius:8px;padding:10px;">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Recaudado</div>
+            <div style="font-size:20px;font-weight:800;">78%</div>
+            <div style="height:3px;background:#2a2318;border-radius:2px;margin-top:5px;"><div style="width:78%;height:100%;background:var(--brand);border-radius:2px;"></div></div>
+          </div>
+          <div style="background:var(--bg-active);border-radius:8px;padding:10px;">
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Morosidad</div>
+            <div style="font-size:20px;font-weight:800;color:#c4882a;">15%</div>
+            <div style="font-size:9px;color:var(--text-3);margin-top:4px;">5 participantes</div>
+          </div>
+        </div>
+      </div>`
+    },
+    {
+      id: 'abonos',
+      icon: '💳',
+      label: 'Pagos parciales (abonos)',
+      title: 'No todos pagan de una vez',
+      desc: 'Permite registrar pagos en partes. Cada abono queda con timestamp, monto y barra de progreso visual. Al llegar al 100%, la cuota pasa automáticamente a "Pagado". El tesorero puede cancelar abonos si es necesario.',
+      bullets: [
+        'Historial detallado de cada abono',
+        'Barra de progreso en tiempo real',
+        'Transición automática al completar 100%',
+        'Cancelación de abonos (solo tesorero)'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Mensualidad Abril — Juan Pérez</div>
+        <div style="background:var(--bg-active);border-radius:7px;padding:10px;margin-bottom:7px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-size:11px;color:var(--text-2);">Total $50.000</span>
+            <span style="font-size:11px;color:var(--brand);font-weight:600;">60% pagado</span>
+          </div>
+          <div style="height:5px;background:#2a2318;border-radius:3px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--brand);border-radius:3px;"></div></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-3);margin-bottom:5px;">Historial</div>
+        <div class="mini-ui-row"><span>Abono 1 — 12 Abr</span><span style="color:#4a9e72;">+$20.000</span></div>
+        <div class="mini-ui-row"><span>Abono 2 — 18 Abr</span><span style="color:#4a9e72;">+$10.000</span></div>
+      </div>`
+    },
+    {
+      id: 'whatsapp',
+      icon: '📱',
+      label: 'Recordatorios por WhatsApp',
+      title: 'Un click, todos avisados',
+      desc: 'Envío masivo con plantillas personalizables por grupo. Variables dinámicas como {nombre}, {monto} y {fecha} hacen que cada mensaje sea personal. El sistema muestra progreso en tiempo real y guarda el timestamp de cada envío.',
+      bullets: [
+        'Plantillas con variables dinámicas',
+        'Diálogo de confirmación antes de enviar',
+        'Progreso visual del envío masivo',
+        'Registro de timestamp por envío'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Envío masivo</div>
+        <div style="background:var(--bg-active);border-radius:7px;padding:10px;margin-bottom:8px;font-size:11px;color:var(--text-2);line-height:1.5;">"Hola <span style="color:var(--brand);">{nombre}</span>, recuerda que tu cuota de <span style="color:var(--brand);">{monto}</span> vence el <span style="color:var(--brand);">{fecha}</span>."</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span>Enviando...</span><span style="color:var(--brand);">18 / 24</span></div>
+        <div style="height:4px;background:#2a2318;border-radius:2px;margin-bottom:7px;overflow:hidden;"><div style="width:75%;height:100%;background:var(--brand);border-radius:2px;"></div></div>
+        <div style="font-size:11px;color:#4a9e72;">✓ 18 enviados · 6 pendientes</div>
+      </div>`
+    },
+    {
+      id: 'comprobantes',
+      icon: '📎',
+      label: 'Comprobantes digitales',
+      title: 'Foto del voucher, registro permanente',
+      desc: 'Los apoderados suben fotos o PDFs desde el celular. Los archivos se almacenan en Supabase Storage con URLs firmadas. El tesorero previsualiza y aprueba o rechaza con notas. Validación real de tipos (magic bytes) para evitar fraudes.',
+      bullets: [
+        'Soporte JPG, PNG y PDF',
+        'Validación por magic bytes (no solo extensión)',
+        'URLs firmadas para acceso seguro',
+        'Vista previa antes de enviar'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Pendientes de revisión · 2</div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">María González</div><div style="font-size:10px;color:var(--text-3);">voucher.jpg · Mensualidad Mayo</div></div>
+          <div style="display:flex;gap:5px;">
+            <button style="background:rgba(74,158,114,0.12);color:#4a9e72;border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;">✓</button>
+            <button style="background:rgba(192,80,80,0.10);color:#c05050;border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;">✗</button>
+          </div>
+        </div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">Carlos Rojas</div><div style="font-size:10px;color:var(--text-3);">transfer.pdf · Mensualidad Mayo</div></div>
+          <div style="display:flex;gap:5px;">
+            <button style="background:rgba(74,158,114,0.12);color:#4a9e72;border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;">✓</button>
+            <button style="background:rgba(192,80,80,0.10);color:#c05050;border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;">✗</button>
+          </div>
+        </div>
+      </div>`
+    },
+    {
+      id: 'offline',
+      icon: '🔌',
+      label: 'Funciona sin internet',
+      title: 'Sin conexión, sin problemas',
+      desc: 'Arquitectura offline-first real: todas las operaciones se guardan en SQLite local primero. Al recuperar la conexión, se sincronizan automáticamente a Supabase. Cola de reintentos con exponential backoff (2s → 60s). Los comprobantes también se guardan offline.',
+      bullets: [
+        'SQLite local como fuente de verdad',
+        'Cola de reintentos con exponential backoff',
+        'Comprobantes offline (se suben al reconectar)',
+        'Indicador visual del estado de conexión'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="background:rgba(196,136,42,0.09);border:1px solid rgba(196,136,42,0.18);border-radius:8px;padding:10px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;">
+          <span style="font-size:14px;">⚠️</span>
+          <div><div style="font-size:12px;font-weight:600;color:#c4882a;">Sin conexión</div><div style="font-size:10px;color:var(--text-2);">Guardando localmente. Se sincronizará al reconectar.</div></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-3);margin-bottom:5px;">Cola de sincronización</div>
+        <div class="mini-ui-row"><span>Abono $15.000</span><span style="color:var(--text-3);">esperando...</span></div>
+        <div class="mini-ui-row"><span>comprobante.jpg</span><span style="color:var(--text-3);">esperando...</span></div>
+        <div style="margin-top:8px;font-size:11px;color:#4a9e72;">✓ App funcional · datos locales seguros</div>
+      </div>`
+    },
+    {
+      id: 'reportes',
+      icon: '📄',
+      label: 'Reportes PDF',
+      title: 'Datos listos para presentar',
+      desc: 'Tres tipos de reportes profesionales generados con ReportLab: Morosidad (ranking de deudas con montos y porcentajes), Recaudación mensual (esperado vs recaudado con gráficos) y Estado por concepto (avance de cada tipo de cuota).',
+      bullets: [
+        'PDF profesional con gráficos integrados',
+        'Reporte de morosidad con ranking',
+        'Recaudación mensual comparativa',
+        'Estado detallado por concepto'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Generar reporte</div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">Reporte de Morosidad</div><div style="font-size:10px;color:var(--text-3);">Participantes con deuda pendiente</div></div>
+          <button style="background:var(--brand-dim);color:var(--brand);border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;flex-shrink:0;">PDF</button>
+        </div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">Recaudación Mensual</div><div style="font-size:10px;color:var(--text-3);">Esperado vs recaudado por mes</div></div>
+          <button style="background:var(--brand-dim);color:var(--brand);border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;flex-shrink:0;">PDF</button>
+        </div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">Estado por Concepto</div><div style="font-size:10px;color:var(--text-3);">Progreso de cada tipo de cuota</div></div>
+          <button style="background:var(--brand-dim);color:var(--brand);border:none;border-radius:5px;padding:4px 8px;font-size:11px;cursor:pointer;flex-shrink:0;">PDF</button>
+        </div>
+      </div>`
+    },
+    {
+      id: 'mis-pagos',
+      icon: '🗂️',
+      label: 'Vista unificada multi-grupo',
+      title: 'Hijos en varios cursos, una sola vista',
+      desc: '"Mis Pagos" consolida las cuotas de todos los grupos en los que participa el apoderado. Ordenadas por urgencia: atrasadas primero, parciales, pendientes. Cada fila muestra el chip del grupo de origen y acceso directo a abonar.',
+      bullets: [
+        'Consolidación automática multi-grupo',
+        'Orden por urgencia (atrasadas → parciales → pendientes)',
+        'Chip del grupo en cada fila',
+        'Acceso directo a abonar desde la vista'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:13px;font-weight:600;">Mis Pagos</span>
+          <span style="font-size:10px;color:var(--text-3);">3 pendientes · $145.000</span>
+        </div>
+        <div style="background:rgba(192,80,80,0.07);border:1px solid rgba(192,80,80,0.13);border-radius:8px;padding:10px;margin-bottom:5px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;font-weight:600;">Mensualidad Abril</span><span style="font-size:11px;color:#c05050;font-weight:600;">ATRASADA</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;background:var(--brand-dim);color:var(--brand);padding:2px 7px;border-radius:4px;">5°B C. de Padres</span><span style="font-size:12px;font-weight:700;">$45.000</span></div>
+        </div>
+        <div class="mini-ui-row">
+          <div><div style="font-size:12px;font-weight:500;">Mensualidad Mayo</div><div style="display:flex;align-items:center;gap:5px;margin-top:2px;"><span style="font-size:10px;background:var(--brand-dim);color:var(--brand);padding:2px 7px;border-radius:4px;">Club Deportivo</span></div></div>
+          <div style="text-align:right;"><div style="font-size:11px;color:#c4882a;">PARCIAL 40%</div><div style="font-size:12px;font-weight:700;">$60.000</div></div>
+        </div>
+      </div>`
+    }
+  ];
+
+  let activeFeature = features[0].id;
+
+  function renderFeatureTabs() {
+    const nav = document.getElementById('ftab-nav');
+    nav.innerHTML = features.map(f => `
+      <button class="ftab ${f.id === activeFeature ? 'on' : ''}" onclick="setFeature('${f.id}')">
+        <span class="ftab-icon">${f.icon}</span>
+        <span class="ftab-label">${f.label}</span>
+      </button>
+    `).join('');
+  }
+
+  function renderFeaturePanel(f) {
+    document.getElementById('ftab-panel').innerHTML = `
+      <h3 class="feature-panel-title">${f.title}</h3>
+      <p class="feature-panel-desc">${f.desc}</p>
+      ${f.bullets.map(b => `<div class="feature-bullet">${b}</div>`).join('')}
+      ${f.ui}
+    `;
+  }
+
+  window.setFeature = function(id) {
+    activeFeature = id;
+    renderFeatureTabs();
+    renderFeaturePanel(features.find(f => f.id === id));
+  };
+
+  renderFeatureTabs();
+  renderFeaturePanel(features[0]);
+
+  // ── FAQ ──
+  const faqs = [
+    {
+      q: '¿Kuota es gratuito de verdad?',
+      a: 'Sí. El plan Free no tiene fecha de vencimiento. Incluye 1 grupo, hasta 15 participantes y 10 recordatorios por WhatsApp al mes. Todas las funcionalidades principales están disponibles sin pagar.'
+    },
+    {
+      q: '¿Necesito instalar algo?',
+      a: 'No. Kuota funciona directo desde el navegador en cualquier dispositivo. También hay versión de escritorio para Windows, Mac y Linux basada en Python/Flet para quienes prefieren una app nativa.'
+    },
+    {
+      q: '¿Qué pasa si no tengo internet?',
+      a: 'Kuota tiene arquitectura offline-first real. Todo se guarda localmente con SQLite y sincroniza automáticamente cuando recuperas la conexión. No se pierde ningún dato.'
+    },
+    {
+      q: '¿Cómo invito a los apoderados?',
+      a: 'Por WhatsApp con un enlace mágico (un click y entran) o descargando el QR del grupo para compartirlo. Los apoderados entran con su email y no necesitan crear una cuenta por separado si usan el link de invitación.'
+    },
+    {
+      q: '¿Puedo gestionar varios grupos a la vez?',
+      a: 'Sí. Desde el plan Starter tienes 5 grupos simultáneos, en Pro son ilimitados. Los apoderados con hijos en varios grupos ven todas sus cuotas unificadas en la vista "Mis Pagos".'
+    },
+    {
+      q: '¿Mis datos están seguros?',
+      a: 'Sí. Cada usuario accede únicamente a los datos de sus propios grupos — nadie más puede ver tu información. Los comprobantes se almacenan con acceso de tiempo limitado. Kuota sigue estándares de seguridad reconocidos internacionalmente.'
+    }
+  ];
+
+  document.getElementById('faq-list').innerHTML = faqs.map((f, i) => `
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFaq(${i})">
+        <span class="faq-q-text">${f.q}</span>
+        <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join('');
+
+  window.toggleFaq = function(i) {
+    document.getElementById('faq-' + i).classList.toggle('open');
+  };
+
+})();
+</script>
 </body>
 </html>
