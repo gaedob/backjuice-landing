@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuota — Presentación para Socios</title>
+  <meta name="description" content="Kuota: oportunidad de negocio SaaS en recaudación y cobranza para organizaciones. Canvas, mercado, proyecciones y propuesta.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23d97040'/><text x='7' y='23' font-size='20' font-weight='900' fill='white' font-family='system-ui'>K</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #c86030; --brand-light: #b05228;
+      --brand-dim: rgba(200,96,48,0.08); --brand-border: rgba(200,96,48,0.22);
+      --bg: #f8f5ef; --bg-raised: #ffffff; --bg-hover: #f2ede4; --bg-active: #ebe5d8;
+      --border: rgba(30,18,8,0.09); --border-mid: rgba(30,18,8,0.15);
+      --text: #1c1309; --text-2: #6b5c4e; --text-3: #a0907e;
+      --ok: #4a9e72; --warn: #c4882a; --bad: #c05050;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 0; }
+    .label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+    .brand { color: var(--brand); }
+    h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.12; }
+    h3 { font-size: 17px; font-weight: 700; }
+    .card { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 14px; }
+    .div { border: none; border-top: 1px solid var(--border); margin: 0; }
+    .grid { display: grid; gap: 8px; }
+    .g2 { grid-template-columns: 1fr 1fr; }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--border-mid); }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .total td { font-weight: 800; background: var(--brand-dim); }
+    .pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--bg-hover); color: var(--text-2); border: 1px solid var(--border); }
+    .pill.ok { background: rgba(74,158,114,0.10); color: var(--ok); border-color: rgba(74,158,114,0.25); }
+    .pill.brand { background: var(--brand-dim); color: var(--brand); border-color: var(--brand-border); }
+    .bar-row { display: grid; grid-template-columns: 150px 1fr 110px; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .bar-track { height: 22px; background: var(--bg-active); border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--brand); border-radius: 6px; }
+    .canvas-cell { padding: 18px; }
+    .canvas-cell .label { color: var(--brand); margin-bottom: 8px; display: block; }
+    .canvas-cell ul { list-style: none; }
+    .canvas-cell li { font-size: 13px; color: var(--text-2); line-height: 1.55; padding-left: 14px; position: relative; margin-bottom: 4px; }
+    .canvas-cell li::before { content: "·"; position: absolute; left: 2px; color: var(--brand); font-weight: 900; }
+    .footnote { font-size: 12px; color: var(--text-3); margin-top: 14px; line-height: 1.6; }
+    @media (max-width: 800px) {
+      .g2, .g3, .canvas-grid { grid-template-columns: 1fr !important; }
+      .bar-row { grid-template-columns: 110px 1fr 90px; }
+      .section { padding: 44px 0; }
+      .table-scroll { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div style="border-bottom:1px solid var(--border);background:var(--bg-raised);">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:17px;">K</div>
+      <div>
+        <div style="font-weight:800;font-size:15px;letter-spacing:-0.01em;">Kuota</div>
+        <div style="font-size:10px;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;">Presentación para socios</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <span class="pill">Confidencial · Julio 2026</span>
+      <a href="index.html" style="font-size:13px;color:var(--text-2);">Ver landing pública →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="section" style="padding-top:72px;">
+  <div class="container">
+    <div class="label brand" style="margin-bottom:14px;letter-spacing:0.14em;">Oportunidad de negocio · SaaS de Recaudación y Cobranza</div>
+    <h1 style="font-size:clamp(32px,5vw,54px);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;">
+      La administración financiera de<br>
+      <span class="brand">60.000+ organizaciones en Chile</span><br>
+      todavía vive en Excel y WhatsApp.
+    </h1>
+    <p style="font-size:17px;color:var(--text-2);max-width:720px;line-height:1.7;margin-bottom:28px;">
+      Kuota es una plataforma SaaS que profesionaliza la recaudación, cobranza y rendición de
+      cursos, academias, clubes y organizaciones. <strong>El producto ya existe, está en producción
+      (v2.14) y opera en 4 plataformas.</strong> Buscamos socios para escalar la comercialización.
+    </p>
+    <div class="grid g3">
+      <div class="card" style="padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:var(--brand);">60.000+</div>
+        <div style="font-size:12px;color:var(--text-2);">organizaciones objetivo solo en Chile</div>
+      </div>
+      <div class="card" style="padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:var(--brand);">v2.14</div>
+        <div style="font-size:12px;color:var(--text-2);">producto en producción, no una idea</div>
+      </div>
+      <div class="card" style="padding:20px;text-align:center;">
+        <div style="font-size:28px;font-weight:900;color:var(--brand);">$888M</div>
+        <div style="font-size:12px;color:var(--text-2);">ARR potencial CLP en escenario a 3-4 años</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ LA OPORTUNIDAD ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">01 · La oportunidad</div>
+    <h2 style="margin-bottom:20px;">Un dolor real, un mercado que ya paga.</h2>
+    <div class="grid g2" style="gap:24px;align-items:start;">
+      <div>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">
+          Miles de tesoreros de cursos, academias deportivas, talleres y fundaciones administran dinero
+          real con Excel, transferencias manuales y grupos de WhatsApp. El resultado: caos administrativo,
+          cero trazabilidad, desconfianza y personas agotadas haciendo un segundo trabajo no pagado.
+        </p>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.75;">
+          El valor de Kuota no es "cobrar cuotas": es <strong>reducir el caos administrativo, dar
+          transparencia financiera, automatizar la cobranza y profesionalizar organizaciones
+          pequeñas y medianas</strong>. Ese dolor es transversal en Chile y Latam.
+        </p>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div class="label" style="margin-bottom:10px;">El mercado ya está validado</div>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:12px;">
+          Existen competidores activos cobrando por resolver partes de este problema —
+          señal de que el mercado entiende el dolor y paga:
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill">Lirmi</span><span class="pill">Kurso</span><span class="pill">CePa App</span>
+          <span class="pill">Sport360</span><span class="pill">Legios</span><span class="pill">PagoEdu</span>
+        </div>
+        <p class="footnote">Ninguno combina multi-organización con vocabulario propio + offline-first + cobranza por WhatsApp + caja con trazabilidad en una sola experiencia simple. Ahí está el espacio de Kuota.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ PRODUCTO HOY ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">02 · El producto, hoy</div>
+    <h2 style="margin-bottom:8px;">No es una idea. Está construido y en producción.</h2>
+    <p style="font-size:15px;color:var(--text-2);margin-bottom:28px;">Versión 2.14 liberada. Desarrollo activo con releases continuos.</p>
+    <div class="grid g3">
+      <div class="card canvas-cell">
+        <span class="label">Recaudación</span>
+        <ul>
+          <li>Períodos con generación automática de cuotas para todo el grupo</li>
+          <li>Pagos completos o en abonos parciales con progreso visual</li>
+          <li>Comprobantes por foto/PDF con validación real de archivos</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label">Cobranza</span>
+        <ul>
+          <li>Dashboard en tiempo real (recaudado, morosidad, por vencer)</li>
+          <li>Recordatorios masivos por WhatsApp con plantilla personalizable y vista previa</li>
+          <li>Calendario de vencimientos con alertas anticipadas</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label">Transparencia</span>
+        <ul>
+          <li>Caja del grupo: ingresos, gastos y disponible con respaldo</li>
+          <li>Recibos PDF verificables con QR y huella criptográfica</li>
+          <li>Reportes de morosidad y recaudación listos para presentar</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label">Diferenciadores</span>
+        <ul>
+          <li><strong>Multi-organización:</strong> la app cambia su vocabulario según el tipo (colegio / club / organización)</li>
+          <li><strong>Branding por grupo:</strong> logo, colores y portadas propias</li>
+          <li><strong>Offline-first real:</strong> funciona sin internet y sincroniza solo</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label">Experiencia</span>
+        <ul>
+          <li>Chat integrado estilo WhatsApp (burbujas, ticks, no leídos) + anuncios</li>
+          <li>Web, escritorio, Android e iOS desde una sola base de código</li>
+          <li>Onboarding con invitación por link mágico o QR</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label">Solidez técnica</span>
+        <ul>
+          <li>1.500+ pruebas automatizadas, CI en cada cambio</li>
+          <li>Seguridad por usuario a nivel de base de datos (RLS)</li>
+          <li>Infraestructura liviana y barata de operar (detalle en costos)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ CANVAS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">03 · Business Model Canvas</div>
+    <h2 style="margin-bottom:28px;">El negocio en una página.</h2>
+    <div class="grid canvas-grid" style="grid-template-columns:repeat(5,1fr);grid-auto-rows:minmax(150px,auto);">
+      <div class="card canvas-cell" style="grid-row:span 2;">
+        <span class="label">Socios clave</span>
+        <ul>
+          <li>Centros de padres y directivas (canal de entrada)</li>
+          <li>Federaciones y asociaciones deportivas</li>
+          <li>Pasarelas de pago (futuro: pago in-app)</li>
+          <li>Proveedores cloud (Supabase, hosting)</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-row:span 2;">
+        <span class="label">Actividades clave</span>
+        <ul>
+          <li>Ventas relacionales B2B (el desafío nº1)</li>
+          <li>Onboarding y soporte humano</li>
+          <li>Desarrollo continuo del producto</li>
+          <li>Customer success (renovación)</li>
+        </ul>
+        <span class="label" style="margin-top:14px;">Recursos clave</span>
+        <ul>
+          <li>Producto construido y probado</li>
+          <li>Conocimiento del dominio</li>
+          <li>Confianza y reputación (se construye)</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-row:span 2;background:var(--brand-dim);border-color:var(--brand-border);">
+        <span class="label">Propuesta de valor</span>
+        <ul>
+          <li><strong>Profesionaliza tu organización:</strong> del Excel y WhatsApp a una operación ordenada</li>
+          <li>Cobranza automática que no desgasta relaciones</li>
+          <li>Transparencia y trazabilidad total del dinero</li>
+          <li>Tan simple que un tesorero no técnico lo usa el primer día</li>
+          <li>Habla el idioma de cada comunidad</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-row:span 2;">
+        <span class="label">Relación con clientes</span>
+        <ul>
+          <li>Acompañamiento en la puesta en marcha</li>
+          <li>Soporte cercano (email → dedicado por plan)</li>
+          <li>Auto-servicio: plan Free como puerta de entrada</li>
+        </ul>
+        <span class="label" style="margin-top:14px;">Canales</span>
+        <ul>
+          <li>Boca a boca entre tesoreros y directivas</li>
+          <li>Venta directa a academias y colegios</li>
+          <li>Landing + plan Free (product-led)</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-row:span 2;">
+        <span class="label">Segmentos</span>
+        <ul>
+          <li><strong>Entrada:</strong> cursos, centros de padres, talleres (~80.000-120.000 en Chile)</li>
+          <li><strong>Crecimiento:</strong> academias deportivas y artísticas (~10.000-15.000)</li>
+          <li><strong>Escala:</strong> colegios pequeños y redes</li>
+          <li><strong>Expansión:</strong> Latam (600.000+ instituciones)</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-column:span 2;">
+        <span class="label">Estructura de costos</span>
+        <ul>
+          <li>Infraestructura muy barata al inicio ($150-400k/mes)</li>
+          <li>Los costos grandes son humanos: soporte, ventas, onboarding</li>
+          <li>Total año 1 estimado: $2-4M CLP/mes</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell" style="grid-column:span 3;">
+        <span class="label">Fuentes de ingreso</span>
+        <ul>
+          <li>Suscripción mensual SaaS por organización: Free / Curso $9.990 / Academia $29.990 / Colegio a medida ($120k-900k+ según matrícula)</li>
+          <li>Futuro (visión fintech): comisión por pagos in-app, módulos premium, eventos y fundraising</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ MERCADO ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">04 · Tamaño de mercado</div>
+    <h2 style="margin-bottom:8px;">Chile como base. Latam como destino.</h2>
+    <p style="font-size:15px;color:var(--text-2);margin-bottom:24px;">El mercado real no son solo colegios: son <em>organizaciones con pagos recurrentes y administración semi-profesional</em>.</p>
+    <div class="grid g2" style="gap:24px;align-items:start;">
+      <div class="card table-scroll" style="padding:8px;">
+        <table>
+          <thead><tr><th>Segmento (Chile)</th><th class="num">Potencial</th></tr></thead>
+          <tbody>
+            <tr><td>Establecimientos educacionales (MINEDUC)</td><td class="num">10.900</td></tr>
+            <tr><td>Cursos / centros de padres organizados</td><td class="num">80.000–120.000</td></tr>
+            <tr><td>Academias deportivas y artísticas</td><td class="num">10.000–15.000</td></tr>
+            <tr><td>Talleres, fundaciones, agrupaciones</td><td class="num">25.000–40.000</td></tr>
+            <tr class="total"><td>Organizaciones pagadoras potenciales</td><td class="num">60.000+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card table-scroll" style="padding:8px;">
+        <table>
+          <thead><tr><th>Latam — instituciones educativas</th><th class="num">Aprox.</th></tr></thead>
+          <tbody>
+            <tr><td>México</td><td class="num">250.000+</td></tr>
+            <tr><td>Brasil</td><td class="num">180.000+</td></tr>
+            <tr><td>Perú</td><td class="num">70.000+</td></tr>
+            <tr><td>Argentina</td><td class="num">60.000+</td></tr>
+            <tr><td>Colombia</td><td class="num">50.000+</td></tr>
+            <tr class="total"><td>Latam (sin contar academias ni clubes)</td><td class="num">600.000+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="footnote">Principio rector: <strong>visión agresiva, adopción conservadora.</strong> El SaaS B2B en educación crece lento y relacional — la confianza pesa más que la tecnología. Las proyecciones de abajo asumen eso.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ MODELO DE INGRESOS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">05 · Modelo de ingresos</div>
+    <h2 style="margin-bottom:24px;">Suscripción SaaS por organización, en CLP.</h2>
+    <div class="grid g3">
+      <div class="card" style="padding:22px;">
+        <div class="label" style="margin-bottom:6px;">Curso</div>
+        <div style="font-size:26px;font-weight:900;">$9.990<span style="font-size:13px;color:var(--text-3);font-weight:600;">/mes</span></div>
+        <p style="font-size:13px;color:var(--text-2);margin-top:8px;">Cursos, talleres y centros de padres. Puerta de entrada masiva vía plan Free.</p>
+      </div>
+      <div class="card" style="padding:22px;border-color:var(--brand);">
+        <div class="label brand" style="margin-bottom:6px;">Academia</div>
+        <div style="font-size:26px;font-weight:900;">$29.990<span style="font-size:13px;color:var(--text-3);font-weight:600;">/mes</span></div>
+        <p style="font-size:13px;color:var(--text-2);margin-top:8px;">Academias, clubes y organizaciones activas. El segmento con mejor relación ticket/esfuerzo de venta.</p>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div class="label" style="margin-bottom:6px;">Colegio</div>
+        <div style="font-size:26px;font-weight:900;">$120k–900k<span style="font-size:13px;color:var(--text-3);font-weight:600;">/mes</span></div>
+        <p style="font-size:13px;color:var(--text-2);margin-top:8px;">Según matrícula y módulos. Ticket alto, ciclo de venta largo — se aborda en fase 2-3.</p>
+      </div>
+    </div>
+    <p class="footnote"><strong>No competimos por precio.</strong> El soporte, onboarding y confianza cuestan — y el cliente B2B valora más la confianza que el descuento. Ticket sano desde el día uno.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ PROYECCIONES ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">06 · Proyecciones de ingresos</div>
+    <h2 style="margin-bottom:24px;">Tres escenarios, números aterrizados.</h2>
+
+    <div class="card" style="padding:26px;margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+        <h3>Escenario conservador — Año 1</h3>
+        <span class="pill">155 clientes</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Segmento</th><th class="num">Clientes</th><th class="num">Ticket prom.</th><th class="num">MRR</th></tr></thead>
+          <tbody>
+            <tr><td>Cursos / centros de padres</td><td class="num">120</td><td class="num">$12.000</td><td class="num">$1.440.000</td></tr>
+            <tr><td>Academias</td><td class="num">30</td><td class="num">$35.000</td><td class="num">$1.050.000</td></tr>
+            <tr><td>Colegios pequeños</td><td class="num">5</td><td class="num">$180.000</td><td class="num">$900.000</td></tr>
+            <tr class="total"><td>Total</td><td class="num">155</td><td class="num">—</td><td class="num">$3.4M CLP/mes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">ARR ~$41M CLP. Contra costos de $2-4M/mes: <strong>equilibrio o pérdida leve — año de aprendizaje comercial.</strong></p>
+    </div>
+
+    <div class="card" style="padding:26px;margin-bottom:14px;border-color:var(--brand);">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+        <h3 class="brand">Escenario bueno — Año 3-4</h3>
+        <span class="pill brand">2.480 clientes</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Segmento</th><th class="num">Clientes</th><th class="num">Ticket prom.</th><th class="num">MRR</th></tr></thead>
+          <tbody>
+            <tr><td>Cursos / centros de padres</td><td class="num">2.000</td><td class="num">$14.000</td><td class="num">$28M</td></tr>
+            <tr><td>Academias</td><td class="num">400</td><td class="num">$45.000</td><td class="num">$18M</td></tr>
+            <tr><td>Colegios</td><td class="num">80</td><td class="num">$350.000</td><td class="num">$28M</td></tr>
+            <tr class="total"><td>Total</td><td class="num">2.480</td><td class="num">—</td><td class="num">$74M CLP/mes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">ARR ~<strong>$888M CLP</strong>. Empresa SaaS seria: equipo de 10-25 personas, inversión posible, expansión regional viable. Nota: 2.480 clientes es apenas el <strong>4% del mercado chileno</strong> identificado.</p>
+    </div>
+
+    <div class="card" style="padding:26px;margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+        <h3>Escenario Latam — Año 7-10</h3>
+        <span class="pill">0,15% del mercado ampliado</span>
+      </div>
+      <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:10px;">
+        Con 3.000–6.000 organizaciones activas en la región y ticket mixto de USD $40–120/mes:
+        <strong>USD $250k–700k MRR</strong> (≈ CLP $230M–650M mensuales). México, Colombia, Perú y Argentina
+        comparten exactamente el mismo dolor, con muchas más instituciones.
+      </p>
+    </div>
+
+    <!-- Comparativa visual MRR -->
+    <div class="card" style="padding:26px;">
+      <div class="label" style="margin-bottom:14px;">MRR por escenario (CLP mensual)</div>
+      <div class="bar-row"><span style="font-size:13px;color:var(--text-2);">Año 1</span><div class="bar-track"><div class="bar-fill" style="width:5%;opacity:0.55;"></div></div><span style="font-size:13px;font-weight:700;" class="num">$3.4M</span></div>
+      <div class="bar-row"><span style="font-size:13px;color:var(--text-2);">Año 3-4</span><div class="bar-track"><div class="bar-fill" style="width:32%;"></div></div><span style="font-size:13px;font-weight:700;" class="num">$74M</span></div>
+      <div class="bar-row" style="margin-bottom:0;"><span style="font-size:13px;color:var(--text-2);">Latam 7-10</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--brand),#e0895c);"></div></div><span style="font-size:13px;font-weight:700;" class="num">$230-650M</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ COSTOS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">07 · Estructura de costos</div>
+    <h2 style="margin-bottom:8px;">La tecnología es barata. Lo humano es la inversión.</h2>
+    <p style="font-size:15px;color:var(--text-2);margin-bottom:24px;">La infraestructura actual (Supabase + PostgreSQL + storage) opera cientos de clientes por costos marginales.</p>
+    <div class="grid g2" style="gap:24px;align-items:start;">
+      <div class="card table-scroll" style="padding:8px;">
+        <table>
+          <thead><tr><th>Ítem (año 1)</th><th class="num">CLP / mes</th></tr></thead>
+          <tbody>
+            <tr><td>Infraestructura cloud</td><td class="num">$150k – 400k</td></tr>
+            <tr><td>Emails / WhatsApp</td><td class="num">$150k</td></tr>
+            <tr><td>Soporte</td><td class="num">$500k – 1.5M</td></tr>
+            <tr><td>Ventas</td><td class="num">$500k</td></tr>
+            <tr><td>Marketing</td><td class="num">$300k – 1M</td></tr>
+            <tr><td>Pasarela / pagos</td><td class="num">variable</td></tr>
+            <tr class="total"><td>Total estimado</td><td class="num">$2M – 4M</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card canvas-cell" style="margin-bottom:8px;">
+          <span class="label">Dónde se gana o pierde este negocio</span>
+          <ul>
+            <li><strong>Ventas:</strong> B2B educación es lento, relacional, basado en confianza — el desafío nº1 y la razón de buscar socios</li>
+            <li><strong>Soporte y onboarding:</strong> los tesoreros no son técnicos; la puesta en marcha acompañada es parte del producto</li>
+            <li><strong>Customer success:</strong> la renovación anual vale más que la venta nueva</li>
+          </ul>
+        </div>
+        <div class="card canvas-cell">
+          <span class="label">Lo que NO es el cuello de botella</span>
+          <ul>
+            <li>La tecnología: el producto está construido, probado (1.500+ tests) y es barato de operar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ ESTRATEGIA ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">08 · Estrategia de entrada</div>
+    <h2 style="margin-bottom:24px;">De abajo hacia arriba. Nunca al revés.</h2>
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);" id="fases">
+      <div class="card canvas-cell">
+        <span class="pill brand" style="margin-bottom:10px;display:inline-block;">Fase 1 · ahora</span>
+        <h3 style="margin-bottom:6px;">Cursos + academias + talleres</h3>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Entrada fácil, decisión rápida, dolor agudo. Plan Free como puerta; boca a boca entre tesoreros.</p>
+      </div>
+      <div class="card canvas-cell">
+        <span class="pill" style="margin-bottom:10px;display:inline-block;">Fase 2</span>
+        <h3 style="margin-bottom:6px;">Colegios pequeños y subvencionados</h3>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Con casos de éxito y reputación de la fase 1. Ticket mayor, venta consultiva.</p>
+      </div>
+      <div class="card canvas-cell">
+        <span class="pill" style="margin-bottom:10px;display:inline-block;">Fase 3</span>
+        <h3 style="margin-bottom:6px;">Redes de colegios</h3>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Contratos multi-establecimiento. Aquí el SLA, compliance y soporte dedicado ya existen.</p>
+      </div>
+      <div class="card canvas-cell">
+        <span class="pill" style="margin-bottom:10px;display:inline-block;">Fase 4</span>
+        <h3 style="margin-bottom:6px;">Latam</h3>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.6;">Mismo dolor, 10× instituciones. El producto multi-organización y multi-vocabulario ya está listo para viajar.</p>
+      </div>
+    </div>
+    <p class="footnote"><strong>Decisión explícita:</strong> NO competir de frente por colegios grandes al inicio (burocracia, licitaciones, actores establecidos). Ese mercado se gana con reputación, no con features.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ VISIÓN ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">09 · La visión: más que software</div>
+    <h2 style="margin-bottom:8px;">El valor final es la red financiera + comunidad.</h2>
+    <p style="font-size:15px;color:var(--text-2);max-width:760px;line-height:1.75;margin-bottom:20px;">
+      El SaaS de suscripción es el vehículo de entrada. Una vez que Kuota administra la recaudación
+      de miles de comunidades, se habilitan capas de mucho mayor valor — el camino SaaS + fintech:
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <span class="pill brand">Pagos automáticos in-app</span>
+      <span class="pill brand">Billetera del grupo</span>
+      <span class="pill">Eventos y entradas</span>
+      <span class="pill">Fundraising / rifas</span>
+      <span class="pill">Marketplace comunitario</span>
+      <span class="pill">Analytics de morosidad</span>
+      <span class="pill">Seguros y créditos</span>
+    </div>
+    <p class="footnote">Referencia de valoración: los SaaS verticales educativo-financieros en Latam se valoran entre <strong>3× y 10× ARR</strong> según crecimiento. Con USD $1M ARR, rango de USD $3M–10M.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ RIESGOS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="label" style="margin-bottom:12px;">10 · Riesgos, sin maquillaje</div>
+    <h2 style="margin-bottom:24px;">Lo difícil no es el código.</h2>
+    <div class="grid g2" style="gap:8px;">
+      <div class="card canvas-cell">
+        <span class="label" style="color:var(--bad);">Riesgos reales</span>
+        <ul>
+          <li>Adopción lenta: crecimiento relacional tipo ERP, no viral</li>
+          <li>Commoditización si se percibe como "app de cuotas"</li>
+          <li>Soporte y onboarding intensivos en personas</li>
+          <li>Construcción de confianza toma tiempo (se administra dinero ajeno)</li>
+        </ul>
+      </div>
+      <div class="card canvas-cell">
+        <span class="label" style="color:var(--ok);">Mitigación</span>
+        <ul>
+          <li>Posicionamiento de plataforma operacional-financiera, no de app puntual</li>
+          <li>Simplicidad extrema como ventaja competitiva deliberada</li>
+          <li>Plan Free + acompañamiento reducen fricción de entrada</li>
+          <li>Producto ya construido = el capital va a comercialización, no a I+D</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ PROPUESTA ═══ -->
+<section class="section" style="padding-bottom:80px;">
+  <div class="container" style="text-align:center;">
+    <div class="label" style="margin-bottom:12px;">11 · La propuesta</div>
+    <h2 style="font-size:clamp(30px,4.5vw,48px);margin-bottom:16px;">El producto está construido.<br><span class="brand">Busco socios para venderlo.</span></h2>
+    <p style="font-size:16px;color:var(--text-2);max-width:640px;margin:0 auto 28px;line-height:1.75;">
+      La oportunidad no necesita más ingeniería: necesita ventas relacionales, soporte y
+      capital de trabajo comercial. Si tienes experiencia en ventas B2B, redes en el mundo
+      educativo/deportivo, o interés en invertir en un SaaS vertical con producto operativo —
+      conversemos.
+    </p>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;">
+      <a href="mailto:admin@kuota.app?subject=Interés%20en%20sociedad%20—%20Kuota" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;border-radius:8px;background:var(--brand);color:#fff;padding:14px 32px;font-size:15px;">Conversemos → admin@kuota.app</a>
+      <a href="https://myapp-flet.onrender.com/" style="display:inline-flex;align-items:center;gap:6px;font-weight:600;border-radius:8px;border:1px solid var(--border-mid);padding:14px 32px;font-size:15px;">Probar el producto</a>
+    </div>
+    <p class="footnote" style="margin-top:28px;">Documento confidencial de trabajo · Cifras de mercado y proyecciones basadas en análisis propio con datos públicos (MINEDUC y estimaciones sectoriales) · Julio 2026 · Hecho en Chile 🇨🇱</p>
+  </div>
+</section>
+
+</body>
+</html>
