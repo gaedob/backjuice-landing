@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kuota — Gestión de cuotas para grupos</title>
-  <meta name="description" content="Kuota organiza los cobros de tu grupo: dashboard en tiempo real, recordatorios por WhatsApp, pagos parciales y comprobantes digitales. Empieza gratis.">
-  <meta name="keywords" content="gestión cuotas, tesorero curso, app cuotas escolares, cobros grupales, centro de padres, cuotas colegio">
+  <title>Kuota — Gestión de cuotas para colegios, clubes y organizaciones</title>
+  <meta name="description" content="Kuota organiza los cobros de tu comunidad: dashboard en tiempo real, chat integrado, recordatorios por WhatsApp, pagos parciales, caja transparente y recibos verificables. Habla el idioma de tu organización. Empieza gratis.">
+  <meta name="keywords" content="gestión cuotas, tesorero curso, app cuotas escolares, cobros grupales, centro de padres, cuotas colegio, cuotas club deportivo, tesorería junta de vecinos">
   <link rel="canonical" href="https://kuota.app/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kuota.app/">
   <meta property="og:title" content="Kuota — Cuotas sin perseguir. Pagos sin Excel.">
-  <meta property="og:description" content="Dashboard en tiempo real, recordatorios por WhatsApp y pagos parciales. Para tesoreros serios.">
+  <meta property="og:description" content="La plataforma de cobros para colegios, clubes y organizaciones. Dashboard en vivo, chat integrado, caja transparente y recibos verificables. Gratis para empezar.">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23d97040'/><text x='7' y='23' font-size='20' font-weight='900' fill='white' font-family='system-ui'>K</text></svg>">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -34,6 +34,7 @@
     "@type": "FAQPage",
     "mainEntity": [
       {"@type":"Question","name":"¿Kuota es gratuito de verdad?","acceptedAnswer":{"@type":"Answer","text":"Sí. El plan Free no tiene fecha de vencimiento. Incluye 1 grupo, hasta 15 participantes y 10 recordatorios por WhatsApp al mes. Todas las funcionalidades principales están disponibles sin pagar."}},
+      {"@type":"Question","name":"No somos un colegio, ¿nos sirve igual?","acceptedAnswer":{"@type":"Answer","text":"Sí. Al crear tu grupo eliges el tipo de organización (colegio, club deportivo u organización) y toda la app cambia de vocabulario: socios en vez de apoderados, categorías en vez de cursos. Tu comunidad la entiende sin explicaciones."}},
       {"@type":"Question","name":"¿Necesito instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Kuota funciona directo desde el navegador en cualquier dispositivo. Los apoderados entran con un link, sin descargar nada."}},
       {"@type":"Question","name":"¿Qué pasa si no tengo internet?","acceptedAnswer":{"@type":"Answer","text":"Kuota guarda todo localmente y sincroniza automáticamente cuando recuperas la conexión. No se pierde ningún dato."}},
       {"@type":"Question","name":"¿Cómo invito a los apoderados?","acceptedAnswer":{"@type":"Answer","text":"Por WhatsApp con un enlace mágico o descargando el QR del grupo. Los apoderados entran con su email, sin crear cuenta por separado."}},
@@ -130,6 +131,17 @@
     }
     .btn-ghost:hover { border-color: rgba(30,18,8,0.25); background: var(--bg-hover); }
     .btn-sm { padding: 8px 16px; font-size: 13px; }
+
+    /* Switcher de tipo de organización (sección "habla tu idioma") */
+    .org-pill { border: 1px solid var(--border-mid); background: var(--bg-raised); }
+    .org-pill.active {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+    .org-pill.active:hover { background: var(--brand-light); }
+    [data-vocab] { transition: opacity 0.18s ease; }
+    .vocab-fade [data-vocab] { opacity: 0; }
 
     /* ── Nav ── */
     #nav {
@@ -531,6 +543,7 @@
     </a>
 
     <div class="nav-links">
+      <a href="#tu-idioma" class="nav-link">Tu idioma</a>
       <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
       <a href="#como-funciona" class="nav-link">Cómo funciona</a>
       <a href="#planes" class="nav-link">Precios</a>
@@ -552,6 +565,7 @@
 </nav>
 
 <div id="mobile-drawer">
+  <a href="#tu-idioma" class="mobile-nav-link">Tu idioma</a>
   <a href="#funcionalidades" class="mobile-nav-link">Funcionalidades</a>
   <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
   <a href="#planes" class="mobile-nav-link">Precios</a>
@@ -571,7 +585,7 @@
       <div style="max-width:560px;">
         <div class="hero-badge" style="margin-bottom:24px;">
           <span class="live-dot"></span>
-          v2.2.0 · Disponible ahora
+          v2.14 · Disponible ahora
         </div>
 
         <h1 class="hero-h1" style="margin-bottom:20px;">
@@ -581,8 +595,9 @@
         </h1>
 
         <p class="hero-sub" style="margin-bottom:32px;">
-          Kuota organiza los cobros de tu grupo en un solo lugar.
-          Dashboard en tiempo real, caja del grupo, comunicación con apoderados y comprobantes con recibos PDF automáticos. Gratis para empezar.
+          La plataforma de cobros para <strong>colegios, clubes deportivos y organizaciones</strong>.
+          Dashboard en tiempo real, chat integrado, caja transparente, recordatorios por WhatsApp
+          y recibos verificables — en una app que <em>habla el idioma de tu comunidad</em>. Gratis para empezar.
         </p>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
@@ -650,7 +665,7 @@
               <div class="tl" style="background:#b89030;"></div>
               <div class="tl" style="background:#3a9050;"></div>
             </div>
-            <span style="font-size:11px;color:var(--text-3);">Dashboard · Kuota v2.2</span>
+            <span style="font-size:11px;color:var(--text-3);">Dashboard · Kuota v2.14</span>
             <span style="font-size:11px;color:var(--brand);display:flex;align-items:center;gap:4px;">
               <span class="live-dot"></span> En vivo
             </span>
@@ -758,6 +773,69 @@
         <div class="problem-num">03</div>
         <h3 style="font-size:18px;font-weight:700;margin:10px 0 8px;">Sin transparencia, hay desconfianza.</h3>
         <p style="font-size:14px;line-height:1.65;color:var(--text-2);">Los apoderados no saben cuánto deben ni qué pagaron. Las conversaciones se vuelven conflictos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ MULTI-ORGANIZACIÓN ═══════════════════════════════ -->
+<section class="section" id="tu-idioma">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="flow-grid">
+      <div class="reveal">
+        <div class="label" style="margin-bottom:12px;">Único en su clase</div>
+        <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px;">
+          Kuota habla<br>el idioma de<br><span class="brand" id="org-headline">tu colegio</span>.
+        </h2>
+        <p style="font-size:16px;color:var(--text-2);line-height:1.7;margin-bottom:24px;">
+          No es una app genérica adaptada a la fuerza. Eliges el tipo de organización
+          y <strong>toda la interfaz cambia de vocabulario</strong>: apoderados o socios,
+          cursos o categorías, centro de padres o club. Tu comunidad entiende la app
+          desde el primer segundo, porque le habla como ustedes hablan.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;" id="org-switcher">
+          <button class="btn btn-ghost btn-sm org-pill active" data-org="colegio" style="padding:9px 18px;">🎓 Colegio</button>
+          <button class="btn btn-ghost btn-sm org-pill" data-org="club" style="padding:9px 18px;">⚽ Club deportivo</button>
+          <button class="btn btn-ghost btn-sm org-pill" data-org="org" style="padding:9px 18px;">🏘️ Organización</button>
+        </div>
+        <p style="font-size:13px;color:var(--text-3);margin-top:14px;">↑ Pruébalo — la vista de la derecha cambia en vivo, igual que la app.</p>
+      </div>
+
+      <div class="reveal reveal-d1">
+        <div class="mockup-wrap dark-ui" style="color:#f0e9df;max-width:400px;margin:0 auto;">
+          <div class="mockup-bar">
+            <div class="traffic-lights">
+              <div class="tl" style="background:#b85050;"></div>
+              <div class="tl" style="background:#b89030;"></div>
+              <div class="tl" style="background:#3a9050;"></div>
+            </div>
+            <span style="font-size:11px;color:var(--text-3);" data-vocab="titulo">Mis Grupos · Colegio</span>
+            <span style="font-size:11px;color:var(--brand);display:flex;align-items:center;gap:4px;"><span class="live-dot"></span> En vivo</span>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;">Como <span data-vocab="rol_admin">tesorero</span></div>
+            <div style="background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:13px;font-weight:700;" data-vocab="grupo_ej">5°B — Centro de Padres</span>
+                <span style="font-size:12px;font-weight:700;color:var(--brand);">78%</span>
+              </div>
+              <div style="height:4px;background:#2a2318;border-radius:2px;overflow:hidden;margin-bottom:6px;"><div style="width:78%;height:100%;background:var(--brand);"></div></div>
+              <div style="font-size:11px;color:var(--text-3);"><span data-vocab="n_miembros">32 apoderados</span> · <span data-vocab="concepto_ej">Cuota Marzo</span></div>
+            </div>
+            <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;">Como <span data-vocab="rol_miembro">apoderado</span></div>
+            <div style="background:var(--bg-hover);border:1px solid var(--border);border-radius:10px;padding:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:700;" data-vocab="grupo_ej2">Taller de Ciencias</div>
+                  <div style="font-size:11px;color:var(--text-3);margin-top:2px;"><span data-vocab="concepto_ej2">Cuota anual</span> · al día ✓</div>
+                </div>
+                <span style="font-size:11px;background:rgba(74,158,114,0.14);color:#4a9e72;padding:3px 10px;border-radius:999px;font-weight:600;">Pagado</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1005,7 +1083,7 @@
       <div class="card reveal" style="padding:28px;">
         <div style="font-size:30px;margin-bottom:12px;">🎓</div>
         <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Educación</h3>
-        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Centros de padres, colegios, jardines, academias. Cada apoderado con su propio dashboard de cuotas.</p>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Centros de padres, colegios, jardines, academias. Cada apoderado con su propio dashboard de cuotas. <strong>La app dice «apoderados» y «cursos» — como ustedes.</strong></p>
         <div style="display:flex;flex-wrap:wrap;gap:6px;">
           <span class="tag">Cuotas mensuales</span>
           <span class="tag">Eventos</span>
@@ -1015,7 +1093,7 @@
       <div class="card reveal reveal-d1" style="padding:28px;">
         <div style="font-size:30px;margin-bottom:12px;">⚽</div>
         <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Deporte</h3>
-        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Clubes deportivos, academias, ligas amateur. Membresías, equipamiento e inscripciones a torneos.</p>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Clubes deportivos, academias, ligas amateur. Membresías, equipamiento e inscripciones a torneos. <strong>La app dice «socios» y «categorías» — como ustedes.</strong></p>
         <div style="display:flex;flex-wrap:wrap;gap:6px;">
           <span class="tag">Membresías</span>
           <span class="tag">Torneos</span>
@@ -1025,7 +1103,7 @@
       <div class="card reveal reveal-d2" style="padding:28px;">
         <div style="font-size:30px;margin-bottom:12px;">🏘️</div>
         <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Comunidad</h3>
-        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Juntas de vecinos, ONGs, condominios, agrupaciones. Transparencia total en gastos compartidos.</p>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px;">Juntas de vecinos, ONGs, condominios, agrupaciones. Transparencia total en gastos compartidos. <strong>La app dice «miembros» y «aportes» — como ustedes.</strong></p>
         <div style="display:flex;flex-wrap:wrap;gap:6px;">
           <span class="tag">Gastos comunes</span>
           <span class="tag">Proyectos</span>
@@ -1083,7 +1161,7 @@
           <div class="plan-feature-line"><span class="plan-check">✓</span> 50 participantes/grupo</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> 100 recordatorios WA/mes</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> Reportes completos</div>
-          <div class="plan-feature-line"><span class="plan-check">✓</span> Multi-moneda</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Chat integrado y anuncios</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> Soporte por email</div>
         </div>
       </div>
@@ -1102,9 +1180,8 @@
           <div class="plan-feature-line"><span class="plan-check">✓</span> Grupos ilimitados</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> 500 participantes/grupo</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> Recordatorios ilimitados</div>
-          <div class="plan-feature-line"><span class="plan-check">✓</span> API access</div>
-          <div class="plan-feature-line"><span class="plan-check">✓</span> Branding personalizado</div>
-          <div class="plan-feature-line"><span class="plan-check">✓</span> Predicción morosidad</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Branding por grupo (logo, colores, portadas)</div>
+          <div class="plan-feature-line"><span class="plan-check">✓</span> Recibos verificables con QR</div>
           <div class="plan-feature-line"><span class="plan-check">✓</span> SLA 99.5% · Soporte prioritario</div>
         </div>
       </div>
@@ -1174,11 +1251,11 @@
       </div>
       <div class="card" style="padding:28px;border-style:dashed;border-color:var(--border-mid);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:36px;height:36px;background:var(--bg-hover);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;">⚡</div>
-          <span style="font-size:10px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg-hover);color:var(--text-3);border:1px dashed var(--border-mid);">En desarrollo</span>
+          <div style="width:36px;height:36px;background:var(--bg-hover);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;">🔮</div>
+          <span style="font-size:10px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg-hover);color:var(--text-3);border:1px dashed var(--border-mid);">En diseño</span>
         </div>
-        <h3 style="font-size:17px;font-weight:700;margin-bottom:8px;">Offline-first puro</h3>
-        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Escritura local antes que remota. Todas las operaciones se guardan primero en el dispositivo y sincronizan en segundo plano, sin depender de la conectividad en el momento.</p>
+        <h3 style="font-size:17px;font-weight:700;margin-bottom:8px;">Predicción de morosidad</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Anticipa quién probablemente se atrasará según su historial de pagos, para recordar antes y mejor. Además: API para integraciones y sincronización del orden de tus grupos entre dispositivos.</p>
       </div>
     </div>
   </div>
@@ -1294,6 +1371,54 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ── Switcher multi-organización (vocabulario real de la app) ──
+  const VOCAB = {
+    colegio: {
+      headline: 'tu colegio',
+      titulo: 'Mis Grupos · Colegio',
+      rol_admin: 'tesorero', rol_miembro: 'apoderado',
+      grupo_ej: '5°B — Centro de Padres', grupo_ej2: 'Taller de Ciencias',
+      n_miembros: '32 apoderados',
+      concepto_ej: 'Cuota Marzo', concepto_ej2: 'Cuota anual'
+    },
+    club: {
+      headline: 'tu club',
+      titulo: 'Mis Grupos · Club deportivo',
+      rol_admin: 'administrador', rol_miembro: 'socio',
+      grupo_ej: 'Sub-14 — Escuela de Fútbol', grupo_ej2: 'Primera Adulta',
+      n_miembros: '32 socios',
+      concepto_ej: 'Mensualidad Marzo', concepto_ej2: 'Inscripción torneo'
+    },
+    org: {
+      headline: 'tu comunidad',
+      titulo: 'Mis Grupos · Organización',
+      rol_admin: 'administrador', rol_miembro: 'miembro',
+      grupo_ej: 'Junta de Vecinos Los Aromos', grupo_ej2: 'Comité de Agua',
+      n_miembros: '32 miembros',
+      concepto_ej: 'Cuota Marzo', concepto_ej2: 'Aporte proyecto sede'
+    }
+  };
+  const switcher = document.getElementById('org-switcher');
+  if (switcher) {
+    const section = document.getElementById('tu-idioma');
+    switcher.querySelectorAll('.org-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switcher.querySelectorAll('.org-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const v = VOCAB[btn.dataset.org];
+        section.classList.add('vocab-fade');
+        setTimeout(() => {
+          document.getElementById('org-headline').textContent = v.headline;
+          section.querySelectorAll('[data-vocab]').forEach(el => {
+            const key = el.getAttribute('data-vocab');
+            if (v[key]) el.textContent = v[key];
+          });
+          section.classList.remove('vocab-fade');
+        }, 180);
+      });
+    });
+  }
 
 
   // ── Feature tabs ──
@@ -1581,13 +1706,13 @@
     {
       id: 'comunicacion',
       icon: '💬',
-      label: 'Comunicación',
-      title: 'Anuncios y mensajes directos',
-      desc: 'El tesorero envía anuncios a todos los apoderados del grupo (broadcast) o mensajes directos 1→1. Los mensajes no leídos muestran badge contador en tiempo real. Todo funciona offline y sincroniza automáticamente.',
+      label: 'Chat integrado',
+      title: 'Mensajería como la que ya conoces',
+      desc: 'Chat integrado con la experiencia de WhatsApp: burbujas con hora, ticks de estado (⏱ pendiente, ✓✓ entregado), chips de fecha y badges de no leídos. Anuncios como canal de difusión del grupo y mensajes directos 1→1. Todo dentro de Kuota, con el contexto de las cuotas a un toque.',
       bullets: [
+        'Burbujas con ticks de estado, como WhatsApp',
         'Anuncios broadcast para todo el grupo',
-        'Mensajes directos 1→1 tesorero ↔ apoderado',
-        'Badge de no leídos en tiempo real',
+        'Mensajes directos 1→1 con badge de no leídos',
         'Funciona offline con sincronización automática'
       ],
       ui: `<div class="mini-ui">
@@ -1607,6 +1732,57 @@
           <div><div style="font-size:11px;font-weight:500;">💬 Carlos Rojas</div><div style="font-size:10px;color:var(--text-3);">Gracias por confirmar mi pago</div></div>
           <span style="font-size:10px;color:var(--text-3);">✓✓</span>
         </div>
+      </div>`
+    },
+    {
+      id: 'branding',
+      icon: '🎨',
+      label: 'Branding por grupo',
+      title: 'Cada grupo con su propia identidad',
+      desc: 'Sube el logo, elige los colores y agrega un carrusel de fotos de portada. Cada grupo se ve como SU comunidad, no como una app genérica: el club con sus colores, el curso con sus fotos. La identidad se aplica en las cards, el hero del grupo y toda su vista.',
+      bullets: [
+        'Logo y colores propios por grupo',
+        'Carrusel de fotos de portada (hero)',
+        'Fondo personalizado en las cards del grupo',
+        'Configuración simple desde la app, sin diseñadores'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Configuración de branding</div>
+        <div style="background:linear-gradient(135deg,rgba(200,96,48,0.35),rgba(60,90,160,0.3));border-radius:10px;padding:14px;margin-bottom:8px;position:relative;overflow:hidden;">
+          <div style="width:34px;height:34px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--brand);font-size:16px;margin-bottom:8px;">CD</div>
+          <div style="font-size:13px;font-weight:700;color:#fff;">Club Deportivo Halcones</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.75);">Portada personalizada · 3 fotos</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-size:10px;color:var(--text-3);">Colores:</span>
+          <span style="width:18px;height:18px;border-radius:5px;background:#c86030;border:2px solid var(--border-mid);"></span>
+          <span style="width:18px;height:18px;border-radius:5px;background:#3c5aa0;"></span>
+          <span style="width:18px;height:18px;border-radius:5px;background:#2a9d5c;"></span>
+          <span style="font-size:10px;color:var(--brand);margin-left:auto;">Cambiar logo →</span>
+        </div>
+      </div>`
+    },
+    {
+      id: 'periodos',
+      icon: '🔁',
+      label: 'Períodos y generación',
+      title: 'Un año de cuotas en un clic',
+      desc: 'Define el período (año escolar, temporada, ciclo) y los conceptos de cobro con sus montos y vencimientos. Kuota genera automáticamente las cuotas de todos los participantes. Miembro nuevo a mitad de año: sus cuotas se crean solas al incorporarse.',
+      bullets: [
+        'Períodos con fechas de inicio y término',
+        'Generación automática de cuotas para todo el grupo',
+        'Plantillas de conceptos reutilizables',
+        'Altas a mitad de período sin trabajo manual'
+      ],
+      ui: `<div class="mini-ui">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:13px;font-weight:600;">Período 2026</span>
+          <span style="font-size:10px;background:rgba(74,158,114,0.14);color:#4a9e72;padding:2px 8px;border-radius:999px;font-weight:600;">Activo</span>
+        </div>
+        <div class="mini-ui-row"><div><div style="font-size:12px;font-weight:500;">Mensualidad</div><div style="font-size:10px;color:var(--text-3);">$45.000 · vence día 5</div></div><span style="font-size:10px;color:var(--text-3);">×10 meses</span></div>
+        <div class="mini-ui-row"><div><div style="font-size:12px;font-weight:500;">Matrícula</div><div style="font-size:10px;color:var(--text-3);">$80.000 · marzo</div></div><span style="font-size:10px;color:var(--text-3);">×1</span></div>
+        <button style="background:var(--brand);color:#fff;border:none;border-radius:6px;padding:7px;font-size:11px;font-weight:600;cursor:pointer;width:100%;margin-top:6px;">Generar 352 cuotas para 32 participantes</button>
+        <div style="font-size:10px;color:#4a9e72;margin-top:6px;text-align:center;">✓ Generadas en 2 segundos</div>
       </div>`
     }
   ];
@@ -1646,6 +1822,10 @@
     {
       q: '¿Kuota es gratuito de verdad?',
       a: 'Sí. El plan Free no tiene fecha de vencimiento. Incluye 1 grupo, hasta 15 participantes y 10 recordatorios por WhatsApp al mes. Todas las funcionalidades principales están disponibles sin pagar.'
+    },
+    {
+      q: 'No somos un colegio, ¿nos sirve igual?',
+      a: 'Sí — y mejor que cualquier alternativa genérica. Al crear tu grupo eliges el tipo de organización (colegio, club deportivo u organización) y toda la app cambia de vocabulario: socios en vez de apoderados, categorías en vez de cursos, mensualidades en vez de cuotas escolares. Tu comunidad la entiende sin explicaciones.'
     },
     {
       q: '¿Necesito instalar algo?',
