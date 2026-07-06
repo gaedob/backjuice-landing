@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kuota — Gestión de cuotas para colegios, clubes y organizaciones</title>
+  <title>Kuota — Plataforma de Recaudación y Cobranza para colegios, clubes y organizaciones</title>
   <meta name="description" content="Kuota organiza los cobros de tu comunidad: dashboard en tiempo real, chat integrado, recordatorios por WhatsApp, pagos parciales, caja transparente y recibos verificables. Habla el idioma de tu organización. Empieza gratis.">
   <meta name="keywords" content="gestión cuotas, tesorero curso, app cuotas escolares, cobros grupales, centro de padres, cuotas colegio, cuotas club deportivo, tesorería junta de vecinos">
   <link rel="canonical" href="https://kuota.app/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kuota.app/">
-  <meta property="og:title" content="Kuota — Cuotas sin perseguir. Pagos sin Excel.">
+  <meta property="og:title" content="Kuota — Recauda sin perseguir. Cobra sin Excel.">
   <meta property="og:description" content="La plataforma de cobros para colegios, clubes y organizaciones. Dashboard en vivo, chat integrado, caja transparente y recibos verificables. Gratis para empezar.">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23d97040'/><text x='7' y='23' font-size='20' font-weight='900' fill='white' font-family='system-ui'>K</text></svg>">
@@ -511,6 +511,8 @@
       .section { padding: 64px 20px; }
       .section-sm { padding: 40px 20px; }
       .hero-sub { max-width: 100%; }
+      [data-tour] { grid-template-columns: 1fr !important; }
+      [data-tour] .mini-ui { order: 2; }
       .hero-mockup { display: none; }
       .mobile-kpi-strip { display: grid; }
     }
@@ -543,6 +545,7 @@
     </a>
 
     <div class="nav-links">
+      <a href="#recorrido" class="nav-link">Recorrido</a>
       <a href="#tu-idioma" class="nav-link">Tu idioma</a>
       <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
       <a href="#como-funciona" class="nav-link">Cómo funciona</a>
@@ -565,6 +568,7 @@
 </nav>
 
 <div id="mobile-drawer">
+  <a href="#recorrido" class="mobile-nav-link">Recorrido</a>
   <a href="#tu-idioma" class="mobile-nav-link">Tu idioma</a>
   <a href="#funcionalidades" class="mobile-nav-link">Funcionalidades</a>
   <a href="#como-funciona" class="mobile-nav-link">Cómo funciona</a>
@@ -583,21 +587,24 @@
     <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
       <!-- Copy -->
       <div style="max-width:560px;">
-        <div class="hero-badge" style="margin-bottom:24px;">
+        <div class="hero-badge" style="margin-bottom:16px;">
           <span class="live-dot"></span>
           v2.14 · Disponible ahora
         </div>
 
+        <div class="label" style="margin-bottom:14px;color:var(--brand);letter-spacing:0.14em;">Plataforma de Recaudación y Cobranza</div>
+
         <h1 class="hero-h1" style="margin-bottom:20px;">
-          Cuotas sin<br>
+          Recauda sin<br>
           perseguir.<br>
-          <span class="brand">Pagos sin Excel.</span>
+          <span class="brand">Cobra sin Excel.</span>
         </h1>
 
         <p class="hero-sub" style="margin-bottom:32px;">
-          La plataforma de cobros para <strong>colegios, clubes deportivos y organizaciones</strong>.
-          Dashboard en tiempo real, chat integrado, caja transparente, recordatorios por WhatsApp
-          y recibos verificables — en una app que <em>habla el idioma de tu comunidad</em>. Gratis para empezar.
+          Kuota profesionaliza la recaudación de <strong>colegios, clubes deportivos y organizaciones</strong>:
+          genera las cuotas del período completo, cobra con recordatorios inteligentes, recibe pagos
+          con comprobante y rinde cada peso con caja transparente y recibos verificables —
+          en una app que <em>habla el idioma de tu comunidad</em>. Gratis para empezar.
         </p>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
@@ -722,6 +729,31 @@
 
 <hr class="div">
 
+<!-- ═══════════════════════════════ PILARES ═══════════════════════════════ -->
+<section class="section-sm" id="pilares">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;" class="problem-grid">
+      <div class="card reveal" style="padding:26px;border-top:3px solid var(--brand);">
+        <div class="label brand" style="margin-bottom:8px;">01 · Recauda</div>
+        <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">Todo el período,<br>generado en un clic.</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Define conceptos y vencimientos una vez; Kuota crea las cuotas de todos. Pagos completos o en abonos, con comprobante desde el celular.</p>
+      </div>
+      <div class="card reveal reveal-d1" style="padding:26px;border-top:3px solid var(--brand);">
+        <div class="label brand" style="margin-bottom:8px;">02 · Cobra</div>
+        <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">La cobranza deja<br>de ser personal.</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Alertas de vencimiento, recordatorios masivos por WhatsApp con mensaje personalizable y chat integrado. El sistema cobra; tú mantienes la relación.</p>
+      </div>
+      <div class="card reveal reveal-d2" style="padding:26px;border-top:3px solid var(--brand);">
+        <div class="label brand" style="margin-bottom:8px;">03 · Rinde</div>
+        <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">Cada peso,<br>a la vista de todos.</h3>
+        <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Caja con ingresos y gastos, recibos PDF verificables con QR y reportes listos para presentar. La transparencia elimina los conflictos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- ═══════════════════════════════ STATS ═══════════════════════════════ -->
 <section class="section-sm">
   <div class="container">
@@ -754,7 +786,7 @@
     <div class="reveal" style="margin-bottom:56px;">
       <div class="label" style="margin-bottom:12px;">El problema</div>
       <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;">
-        Gestionar cuotas hoy es<br>un trabajo de tiempo completo.
+        Recaudar hoy es<br>un segundo trabajo no pagado.
       </h2>
     </div>
 
@@ -977,6 +1009,161 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══════════════════════════════ RECORRIDO ═══════════════════════════════ -->
+<section class="section" id="recorrido">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <div class="label" style="margin-bottom:12px;">El recorrido</div>
+      <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;">
+        Así se siente recaudar<br>con Kuota.
+      </h2>
+      <p style="font-size:16px;color:var(--text-2);margin-top:12px;">Del primer login al último recibo. Ocho pantallas, cero fricción.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <!-- Paso 1 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;" data-tour>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 1 · Entrar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">Un link y estás dentro.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">El administrador invita por WhatsApp con un enlace mágico o un QR. Cada miembro entra con su email — sin descargar nada, sin crear cuentas complicadas. En el primer ingreso, un tour guiado le muestra su pantalla.</p>
+        </div>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="text-align:center;padding:6px 0;">
+            <div style="width:40px;height:40px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:20px;margin:0 auto 8px;">K</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:2px;">Bienvenido a Kuota</div>
+            <div style="font-size:10px;color:var(--text-3);margin-bottom:10px;">Te invitaron al grupo <b>5°B — Centro de Padres</b></div>
+            <div style="background:var(--bg-active);border-radius:6px;padding:7px;font-size:11px;color:var(--text-3);text-align:left;margin-bottom:6px;">tu-email@ejemplo.com</div>
+            <div style="background:var(--brand);color:#fff;border-radius:6px;padding:7px;font-size:11px;font-weight:600;">Unirme al grupo →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:center;" data-tour>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Mis Grupos</div>
+          <div style="background:linear-gradient(135deg,rgba(200,96,48,0.3),rgba(60,90,160,0.25));border-radius:8px;padding:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:12px;font-weight:700;color:#fff;">5°B — Centro de Padres</div><div style="font-size:10px;color:rgba(255,255,255,0.7);">32 apoderados · 78%</div></div>
+            <span style="color:rgba(255,255,255,0.6);font-size:14px;">⠿</span>
+          </div>
+          <div style="background:var(--bg-active);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:12px;font-weight:700;">Club Halcones</div><div style="font-size:10px;color:var(--text-3);">18 socios · al día ✓</div></div>
+            <span style="color:var(--text-3);font-size:14px;">⠿</span>
+          </div>
+        </div>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 2 · Tu espacio</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">Tus grupos, con su propia identidad.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">El home reúne todos tus grupos — como administrador y como miembro. Cada uno con su logo, colores y fotos de portada. Ordénalos arrastrando, como en tu celular. Y la app entera habla el vocabulario de cada comunidad.</p>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;" data-tour>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 3 · Recaudar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">El pulso de la recaudación, en vivo.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">El dashboard muestra recaudado vs esperado, morosidad, próximos vencimientos y comprobantes por revisar — actualizado en menos de un segundo. Definiste el período una vez; las cuotas de todos ya están generadas.</p>
+        </div>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:12px;font-weight:600;">Dashboard</span><span style="font-size:10px;color:var(--brand);"><span class="live-dot"></span> En vivo</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:var(--bg-active);border-radius:7px;padding:9px;"><div style="font-size:9px;color:var(--text-3);">Recaudado</div><div style="font-size:16px;font-weight:800;">$1.24M</div><div style="height:3px;background:#2a2318;border-radius:2px;margin-top:4px;"><div style="width:78%;height:100%;background:var(--brand);border-radius:2px;"></div></div></div>
+            <div style="background:var(--bg-active);border-radius:7px;padding:9px;"><div style="font-size:9px;color:var(--text-3);">Por vencer</div><div style="font-size:16px;font-weight:800;color:#c4882a;">12</div><div style="font-size:9px;color:var(--text-3);margin-top:3px;">próximos 7 días</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:center;" data-tour>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="background:rgba(196,136,42,0.09);border:1px solid rgba(196,136,42,0.18);border-radius:7px;padding:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:11px;font-weight:600;color:#c4882a;">⚠ 12 cuotas por vencer — $540.000</span>
+            <span style="font-size:10px;color:var(--brand);font-weight:600;">Ver</span>
+          </div>
+          <div style="background:var(--bg-active);border-radius:7px;padding:9px;margin-bottom:8px;font-size:10px;color:var(--text-2);line-height:1.5;">"Hola <span style="color:var(--brand);">{nombre}</span>, tu <span style="color:var(--brand);">{concepto}</span> vence el <span style="color:var(--brand);">{fecha}</span>…"</div>
+          <div style="background:var(--brand);color:#fff;border-radius:6px;padding:7px;font-size:11px;font-weight:600;text-align:center;">📱 Enviar a todos por WhatsApp</div>
+        </div>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 4 · Cobrar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">La cobranza, sin poner la cara.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Kuota te alerta de lo que está por vencer. Un clic y todos reciben su recordatorio por WhatsApp, personalizado con nombre, monto y fecha — con vista previa del mensaje antes de enviar. Firme con la deuda, cercano con las personas.</p>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;" data-tour>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 5 · Pagar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">Pagar es una foto.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">El miembro transfiere, fotografía el voucher y lo sube desde el celular. ¿No puede pagar todo? Abona en partes: cada abono queda registrado con su barra de progreso, y al llegar al 100% la cuota se marca pagada sola.</p>
+        </div>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Mensualidad Abril</div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-2);">$50.000</span><span style="color:var(--brand);font-weight:600;">60% pagado</span></div>
+          <div style="height:5px;background:#2a2318;border-radius:3px;overflow:hidden;margin-bottom:8px;"><div style="width:60%;height:100%;background:var(--brand);"></div></div>
+          <div style="background:var(--bg-active);border:1px dashed var(--border-mid);border-radius:7px;padding:9px;text-align:center;font-size:11px;color:var(--text-2);">📎 voucher_abril.jpg adjunto</div>
+        </div>
+      </div>
+
+      <!-- Paso 6 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:center;" data-tour>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="background:var(--bg-active);border-radius:8px;padding:11px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div><div style="font-size:12px;font-weight:700;">Recibo de pago ✓</div><div style="font-size:10px;color:var(--text-3);">Juan Pérez — $45.000</div><div style="font-size:9px;color:var(--text-3);margin-top:5px;font-family:monospace;">SHA-256: a3f8…d1</div></div>
+              <div style="width:34px;height:34px;background:var(--bg-hover);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;">▦</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 6 · Respaldar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">Apruebas, y queda para siempre.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Revisas el comprobante y apruebas o rechazas con una nota. Al aprobar, se genera automáticamente un recibo PDF con QR de verificación y huella criptográfica. Nadie vuelve a preguntar "¿pagué o no pagué?".</p>
+        </div>
+      </div>
+
+      <!-- Paso 7 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center;" data-tour>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 7 · Rendir</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">La caja habla por ti.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Cada pago aprobado suma; cada gasto se registra con su comprobante. El balance disponible se calcula solo, con historial tipo extracto bancario. Y para la reunión: reportes PDF de morosidad y recaudación listos para proyectar.</p>
+        </div>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+            <div style="background:var(--bg-active);border-radius:7px;padding:8px;text-align:center;"><div style="font-size:9px;color:var(--text-3);">Recaudado</div><div style="font-size:13px;font-weight:800;color:#4a9e72;">$890K</div></div>
+            <div style="background:var(--bg-active);border-radius:7px;padding:8px;text-align:center;"><div style="font-size:9px;color:var(--text-3);">Gastado</div><div style="font-size:13px;font-weight:800;color:#c05050;">$320K</div></div>
+            <div style="background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:7px;padding:8px;text-align:center;"><div style="font-size:9px;color:var(--brand);">Disponible</div><div style="font-size:13px;font-weight:800;color:var(--brand);">$570K</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 8 -->
+      <div class="card reveal" style="padding:28px;display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:center;" data-tour>
+        <div class="mini-ui" style="margin-top:0;">
+          <div style="background:var(--bg-active);border-radius:10px 10px 10px 3px;padding:8px 10px;margin-bottom:6px;max-width:85%;"><div style="font-size:11px;">¿Puedo abonar el martes?</div><div style="font-size:9px;color:var(--text-3);text-align:right;">14:02</div></div>
+          <div style="background:var(--brand-dim);border:1px solid var(--brand-border);border-radius:10px 10px 3px 10px;padding:8px 10px;margin-left:auto;max-width:85%;"><div style="font-size:11px;">¡Claro! Queda registrado como abono parcial.</div><div style="font-size:9px;color:var(--text-3);text-align:right;">14:05 ✓✓</div></div>
+        </div>
+        <div>
+          <div class="label brand" style="margin-bottom:8px;">Paso 8 · Conversar</div>
+          <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;">Conversa donde cobras.</h3>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;">Chat integrado con la experiencia de WhatsApp — burbujas, ticks, no leídos — más anuncios para todo el grupo. La conversación del pago vive junto al pago, no perdida en un grupo de WhatsApp con 200 mensajes.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:40px;">
+      <a href="https://myapp-flet.onrender.com/" class="btn btn-orange" style="padding:13px 28px;font-size:15px;">Vivir el recorrido completo →</a>
     </div>
   </div>
 </section>
