@@ -458,14 +458,7 @@
     }
     .faq-q-text { font-size: 15px; font-weight: 500; }
     .faq-icon { flex-shrink: 0; transition: transform 0.2s; }
-    .faq-a {
-      display: none;
-      padding: 0 0 18px;
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.7;
-    }
-    .faq-item.open .faq-a { display: block; }
+    /* .faq-a: apertura suave definida en la capa de movimiento (grid-rows) */
     .faq-item.open .faq-icon { transform: rotate(180deg); }
 
     /* ── Tags ── */
@@ -531,6 +524,116 @@
       mix-blend-mode: multiply;
       pointer-events: none;
       z-index: 9998;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CAPA DE MOVIMIENTO — SVGs animados + transiciones
+       Todo lo de aquí se desactiva con prefers-reduced-motion (al final).
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* ── Hero: el dashboard "arranca en vivo" al cargar ── */
+    .mockup-wrap { position: relative; }
+    /* Destello de luz que recorre la pantalla una sola vez */
+    .mockup-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,0.13) 50%, transparent 62%);
+      transform: translateX(-130%);
+      pointer-events: none;
+      z-index: 3;
+    }
+    body.loaded .hero-mockup .mockup-wrap::after { animation: kuota-sheen 1.5s cubic-bezier(0.4,0,0.2,1) 0.85s 1; }
+    @keyframes kuota-sheen { to { transform: translateX(130%); } }
+
+    /* Barras del gráfico crecen desde abajo, escalonadas */
+    .chart-bars .bar { transform: scaleY(0); transform-origin: bottom; }
+    body.loaded .hero-mockup .chart-bars .bar {
+      animation: kuota-bar-rise 0.75s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(1){ animation-delay:0.30s; }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(2){ animation-delay:0.38s; }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(3){ animation-delay:0.46s; }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(4){ animation-delay:0.54s; }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(5){ animation-delay:0.62s; }
+    body.loaded .hero-mockup .chart-bars .bar:nth-child(6){ animation-delay:0.70s; }
+    @keyframes kuota-bar-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+    /* Barra de progreso se llena hacia su ancho final (hero escritorio y móvil) */
+    .anim-fill { transform: scaleX(0); transform-origin: left; }
+    body.loaded .anim-fill { animation: kuota-fill 1s cubic-bezier(0.22,1,0.36,1) 0.5s forwards; }
+    @keyframes kuota-fill { to { transform: scaleX(1); } }
+
+    /* ── SVGs animados de los pilares (se dibujan al entrar en pantalla) ── */
+    .pillar-svg { display: block; width: 46px; height: 46px; margin-bottom: 16px; color: var(--brand); overflow: visible; }
+    .pillar-svg .draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: none;
+    }
+    .reveal.in .pillar-svg .draw { animation: kuota-draw 1s cubic-bezier(0.65,0,0.35,1) forwards; }
+    .reveal.in .pillar-svg .draw.dl1 { animation-delay: 0.20s; }
+    .reveal.in .pillar-svg .draw.dl2 { animation-delay: 0.40s; }
+    .reveal.in .pillar-svg .draw.dl3 { animation-delay: 0.60s; }
+    @keyframes kuota-draw { to { stroke-dashoffset: 0; } }
+
+    .pillar-svg .pop { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+    .reveal.in .pillar-svg .pop { animation: kuota-pop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.75s forwards; }
+    @keyframes kuota-pop { to { transform: scale(1); } }
+
+    .pillar-svg .breathe { transform-box: fill-box; transform-origin: center; }
+    .reveal.in .pillar-svg .breathe { animation: kuota-breathe 2.6s ease-in-out 1s infinite; }
+    @keyframes kuota-breathe { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .reveal.in .pillar-svg .drop { animation: kuota-drop 2.8s ease-in-out 1.2s infinite; }
+    @keyframes kuota-drop {
+      0%   { transform: translateY(-6px); opacity: 0; }
+      18%  { opacity: 1; }
+      45%  { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ── Cambio de tab del panel de funcionalidades ── */
+    #ftab-panel.swap-in { animation: kuota-panel 0.4s cubic-bezier(0.22,1,0.36,1); }
+    @keyframes kuota-panel {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── FAQ: despliegue suave (grid-rows trick) ── */
+    .faq-a {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-a-inner {
+      overflow: hidden;
+      min-height: 0;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+    .faq-item.open .faq-a-inner { padding-bottom: 18px; }
+
+    /* ── Card: leve elevación de sus SVG/íconos al pasar el mouse ── */
+    .card:hover .pillar-svg { color: var(--brand-light); }
+
+    /* ── Respeto total a quien prefiere menos movimiento ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .chart-bars .bar { transform: scaleY(1) !important; }
+      .anim-fill { transform: scaleX(1) !important; }
+      .pillar-svg .draw { stroke-dashoffset: 0 !important; }
+      .pillar-svg .pop { transform: scale(1) !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .faq-a { grid-template-rows: 1fr; }
+      .live-dot { animation: none !important; }
     }
   </style>
 </head>
@@ -638,24 +741,24 @@
         <div class="mobile-kpi-strip" style="grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;">
           <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
             <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Total recaudado</div>
-            <div style="font-size:18px;font-weight:800;">$1.240.000</div>
-            <div style="height:3px;background:var(--bg-active);border-radius:2px;margin-top:5px;overflow:hidden;"><div style="width:78%;height:100%;background:var(--brand);border-radius:2px;"></div></div>
+            <div style="font-size:18px;font-weight:800;" data-count-to="1240000" data-count-prefix="$" data-count-format="miles">$1.240.000</div>
+            <div style="height:3px;background:var(--bg-active);border-radius:2px;margin-top:5px;overflow:hidden;"><div class="anim-fill" style="width:78%;height:100%;background:var(--brand);border-radius:2px;"></div></div>
             <div style="font-size:10px;color:var(--text-3);margin-top:3px;">78% del objetivo</div>
           </div>
           <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
             <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Participantes</div>
-            <div style="font-size:18px;font-weight:800;">32</div>
+            <div style="font-size:18px;font-weight:800;" data-count-to="32">32</div>
             <div style="font-size:10px;color:#4a9e72;margin-top:4px;">↑ 27 al día</div>
           </div>
           <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;">
             <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">Por vencer</div>
-            <div style="font-size:18px;font-weight:800;color:#c4882a;">12</div>
+            <div style="font-size:18px;font-weight:800;color:#c4882a;" data-count-to="12">12</div>
             <div style="font-size:10px;color:var(--text-3);margin-top:4px;">próximos 7 días</div>
           </div>
           <div style="background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;">
             <div>
               <div style="font-size:10px;color:var(--text-3);margin-bottom:4px;">En revisión</div>
-              <div style="font-size:18px;font-weight:800;color:#8b8ccc;">5</div>
+              <div style="font-size:18px;font-weight:800;color:#8b8ccc;" data-count-to="5">5</div>
               <div style="font-size:10px;color:var(--text-3);margin-top:4px;">comprobantes</div>
             </div>
             <span style="font-size:10px;color:var(--brand);display:flex;align-items:center;gap:3px;margin-top:2px;"><span class="live-dot"></span> En vivo</span>
@@ -681,23 +784,23 @@
           <div class="kpi-grid">
             <div class="kpi">
               <div class="kpi-label">Total recaudado</div>
-              <div class="kpi-value">$1.240.000</div>
-              <div class="progress"><div class="progress-fill" style="width:78%;"></div></div>
+              <div class="kpi-value" data-count-to="1240000" data-count-prefix="$" data-count-format="miles">$1.240.000</div>
+              <div class="progress"><div class="progress-fill anim-fill" style="width:78%;"></div></div>
               <div class="kpi-sub">78% del objetivo</div>
             </div>
             <div class="kpi">
               <div class="kpi-label">Por vencer</div>
-              <div class="kpi-value" style="color:#c4882a;">12</div>
+              <div class="kpi-value" style="color:#c4882a;" data-count-to="12">12</div>
               <div class="kpi-sub">próximos 7 días</div>
             </div>
             <div class="kpi">
               <div class="kpi-label">En revisión</div>
-              <div class="kpi-value" style="color:#8b8ccc;">5</div>
+              <div class="kpi-value" style="color:#8b8ccc;" data-count-to="5">5</div>
               <div class="kpi-sub">comprobantes</div>
             </div>
             <div class="kpi">
               <div class="kpi-label">Participantes</div>
-              <div class="kpi-value">32</div>
+              <div class="kpi-value" data-count-to="32">32</div>
               <div class="kpi-sub" style="color:#4a9e72;">↑ 27 al día</div>
             </div>
           </div>
@@ -734,16 +837,44 @@
   <div class="container">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;" class="problem-grid">
       <div class="card reveal" style="padding:26px;border-top:3px solid var(--brand);">
+        <svg class="pillar-svg" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle class="draw" pathLength="1" cx="16" cy="23" r="11"/>
+          <path class="draw dl1" pathLength="1" d="M16 17v12M13 20.5c0-1.5 1.3-2 3-2s3 .8 3 2-1.3 2-3 2-3 .8-3 2 1.3 2 3 2 3-.5 3-2"/>
+          <path class="draw dl2" pathLength="1" d="M31 18h11"/>
+          <path class="draw dl2" pathLength="1" d="M31 23h11"/>
+          <path class="draw dl3" pathLength="1" d="M31 28h7"/>
+          <circle class="pop" cx="40" cy="9" r="3" fill="currentColor" stroke="none"/>
+        </svg>
         <div class="label brand" style="margin-bottom:8px;">01 · Recauda</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">Todo el período,<br>generado en un clic.</h3>
         <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Define conceptos y vencimientos una vez; Kuota crea las cuotas de todos. Pagos completos o en abonos, con comprobante desde el celular.</p>
       </div>
       <div class="card reveal reveal-d1" style="padding:26px;border-top:3px solid var(--brand);">
+        <svg class="pillar-svg" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M23 10a7 7 0 0 0-7 7c0 6-2 8-3 9h20c-1-1-3-3-3-9a7 7 0 0 0-7-7Z"/>
+          <path class="draw" pathLength="1" d="M23 7v3"/>
+          <path class="draw dl1" pathLength="1" d="M20.5 36a2.5 2.5 0 0 0 5 0"/>
+          <path class="draw dl2" pathLength="1" d="M35.5 14c1.7 1.6 1.7 5.4 0 7"/>
+          <path class="draw dl3" pathLength="1" d="M10.5 14c-1.7 1.6-1.7 5.4 0 7"/>
+          <circle class="pop" cx="33" cy="12" r="3.5" fill="currentColor" stroke="none"/>
+        </svg>
         <div class="label brand" style="margin-bottom:8px;">02 · Cobra</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">La cobranza deja<br>de ser personal.</h3>
         <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Alertas de vencimiento, recordatorios masivos por WhatsApp con mensaje personalizable y chat integrado. El sistema cobra; tú mantienes la relación.</p>
       </div>
       <div class="card reveal reveal-d2" style="padding:26px;border-top:3px solid var(--brand);">
+        <svg class="pillar-svg" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="draw" pathLength="1" d="M13 9h20v28l-3-2-3 2-3-2-3 2-3-2-3 2z"/>
+          <path class="draw dl1" pathLength="1" d="M17 16h12"/>
+          <path class="draw dl2" pathLength="1" d="M17 21h9"/>
+          <path class="draw dl2" pathLength="1" d="M17 26h6"/>
+          <g class="pop">
+            <rect x="27" y="24" width="4.2" height="4.2" rx="0.8" fill="currentColor" stroke="none"/>
+            <rect x="33.2" y="24" width="4.2" height="4.2" rx="0.8" fill="currentColor" stroke="none"/>
+            <rect x="27" y="30.2" width="4.2" height="4.2" rx="0.8" fill="currentColor" stroke="none"/>
+            <rect x="34" y="31" width="2.4" height="2.4" fill="currentColor" stroke="none"/>
+          </g>
+        </svg>
         <div class="label brand" style="margin-bottom:8px;">03 · Rinde</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">Cada peso,<br>a la vista de todos.</h3>
         <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Caja con ingresos y gastos, recibos verificables con QR y reportes listos para presentar. Trazabilidad completa: cada movimiento con su respaldo. La transparencia elimina los conflictos.</p>
@@ -759,7 +890,7 @@
   <div class="container">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;" class="stats-grid">
       <div class="reveal" style="text-align:center;">
-        <div class="stat-num brand">5 min</div>
+        <div class="stat-num brand" data-count-to="5" data-count-suffix=" min">5 min</div>
         <div class="stat-label">Para crear tu primer grupo</div>
       </div>
       <div class="reveal reveal-d1" style="text-align:center;">
@@ -767,7 +898,7 @@
         <div class="stat-label">Instalaciones para apoderados</div>
       </div>
       <div class="reveal reveal-d2" style="text-align:center;">
-        <div class="stat-num">100%</div>
+        <div class="stat-num" data-count-to="100" data-count-suffix="%">100%</div>
         <div class="stat-label">Datos cifrados</div>
       </div>
       <div class="reveal reveal-d3" style="text-align:center;">
@@ -1557,11 +1688,53 @@
     });
   });
 
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Arranque del hero (dispara barras, relleno y destello) ──
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => document.body.classList.add('loaded'));
+  });
+
   // ── Scroll reveal ──
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ── Contadores animados (KPIs y estadísticas) ──
+  function fmtMiles(n) {
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+  function runCount(el) {
+    const to = parseFloat(el.dataset.countTo);
+    const prefix = el.dataset.countPrefix || '';
+    const suffix = el.dataset.countSuffix || '';
+    const miles = el.dataset.countFormat === 'miles';
+    const render = v => prefix + (miles ? fmtMiles(v) : Math.round(v)) + suffix;
+    const dur = 1200, t0 = performance.now();
+    (function frame(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = render(to * eased);
+      if (p < 1) requestAnimationFrame(frame); else el.textContent = render(to);
+    })(performance.now());
+  }
+  const counters = document.querySelectorAll('[data-count-to]');
+  if (prefersReduced) {
+    // Se dejan los valores finales tal cual están en el HTML.
+  } else {
+    const countObs = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { runCount(e.target); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    counters.forEach(el => {
+      const prefix = el.dataset.countPrefix || '';
+      const suffix = el.dataset.countSuffix || '';
+      el.textContent = prefix + '0' + suffix; // arranca en cero
+      countObs.observe(el);
+    });
+  }
 
   // ── Switcher multi-organización (vocabulario real de la app) ──
   const VOCAB = {
@@ -2003,6 +2176,10 @@
     activeFeature = id;
     renderFeatureTabs();
     renderFeaturePanel(features.find(f => f.id === id));
+    const panel = document.getElementById('ftab-panel');
+    panel.classList.remove('swap-in');
+    void panel.offsetWidth; // reinicia la animación
+    panel.classList.add('swap-in');
   };
 
   renderFeatureTabs();
@@ -2046,7 +2223,7 @@
         <span class="faq-q-text">${f.q}</span>
         <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="faq-a">${f.a}</div>
+      <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
     </div>
   `).join('');
 
